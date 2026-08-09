@@ -84,7 +84,11 @@ const TaskCard = ({ task, onToggle }: TaskCardProps) => {
         {task.title}
       </span>
 
-      <button className={styles.card__button} type="button" onClick={handleToggle}>
+      <button
+        className={styles.card__button}
+        type="button"
+        onClick={handleToggle}
+      >
         {isCompleted ? "Reopen" : "Complete"}
       </button>
     </article>
@@ -112,8 +116,13 @@ export default TaskCard;
     border-radius: 0.25rem;
   }
 
-  .title { color: #222; }
-  .completed { color: #777; text-decoration: line-through; }
+  .title {
+    color: #222;
+  }
+  .completed {
+    color: #777;
+    text-decoration: line-through;
+  }
 }
 ```
 
@@ -180,14 +189,13 @@ export default TaskCard;
 - Initial roles are `owner`, `admin`, `member`, and `viewer`.
 - Authentication uses Supabase Auth.
 - The MVP uses simulated `free`, `pro`, and `business` plans; Stripe is a later phase.
+- The pnpm workspace uses `apps/web`, `apps/api`, `packages/types`, and `packages/ui` with package names `@teamflow/web`, `@teamflow/api`, `@teamflow/types`, and `@teamflow/ui`.
 - The frontend is deployed to Vercel and the API to Render.
 - Docker Compose is required for local development and CI.
 - AWS and Terraform are a later phase.
 
 ## Pending decisions
 
-- Exact monorepo structure and final package names.
-- Full subscription limits.
-- Cookie, session, and Next.js-to-API communication policy.
-- Initial API contract and OpenAPI schema.
+- Full subscription enforcement behavior.
+- Exact cookie, session, and Next.js-to-API communication implementation.
 - Complete resource-level permission model.

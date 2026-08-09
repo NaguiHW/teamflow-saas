@@ -50,28 +50,30 @@ Stop and request review before creating the monorepo.
 
 ## Phase 1 — Monorepo and tooling
 
+Status: [x] Completed — pending required review.
+
 ### Objective
 
 Create a consistent development base for the frontend, API, and shared packages.
 
 ### Tasks
 
-- [ ] Create the monorepo with `pnpm workspaces`.
-- [ ] Create `apps/web` with Next.js, App Router, and TypeScript.
-- [ ] Create `apps/api` with Fastify and TypeScript.
-- [ ] Create `packages/types` and `packages/ui`.
-- [ ] Configure strict TypeScript.
-- [ ] Configure ESLint, Prettier, and shared scripts.
-- [ ] Configure Sass and CSS Modules in Next.js.
-- [ ] Add environment variables and `.env.example`.
-- [ ] Add an initial README with development commands.
+- [x] Create the monorepo with `pnpm workspaces`.
+- [x] Create `apps/web` with Next.js, App Router, and TypeScript.
+- [x] Create `apps/api` with Fastify and TypeScript.
+- [x] Create `packages/types` and `packages/ui`.
+- [x] Configure strict TypeScript.
+- [x] Configure ESLint, Prettier, and shared scripts.
+- [x] Configure Sass and CSS Modules in Next.js.
+- [x] Add environment variables and `.env.example`.
+- [x] Add an initial README with development commands.
 
 ### Exit criteria
 
-- [ ] `pnpm install` works from the root.
-- [ ] Frontend and API start with documented commands.
-- [ ] Lint, typecheck, and build pass.
-- [ ] A shared type can be imported by both applications.
+- [x] `pnpm install` works from the root.
+- [x] Frontend and API start with documented commands.
+- [x] Lint, typecheck, and build pass.
+- [x] A shared type can be imported by both applications.
 
 ### Required review
 
@@ -277,6 +279,6 @@ Turn the project into a strong portfolio piece and evaluate advanced improvement
 
 ## Decision and AGENTS.md change log
 
-| Date | Phase | Decision or change | Reason | Update `AGENTS.md`? |
-|---|---|---|---|---|
-| 2026-08-09 | 0 | Created the phased plan | Enable incremental review and reduce risk | No |
+| Date       | Phase | Decision or change      | Reason                                    | Update `AGENTS.md`? |
+| ---------- | ----- | ----------------------- | ----------------------------------------- | ------------------- |
+| 2026-08-09 | 0     | Created the phased plan | Enable incremental review and reduce risk | No                  |
