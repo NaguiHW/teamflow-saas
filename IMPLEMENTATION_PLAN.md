@@ -81,26 +81,28 @@ Review the folder structure, scripts, and conventions before adding the database
 
 ## Phase 2 — Local development and base infrastructure
 
+Status: [x] Completed — pending required review.
+
 ### Objective
 
 Allow any developer to run the project locally with Docker Compose.
 
 ### Tasks
 
-- [ ] Create `docker-compose.yml` for required local services.
-- [ ] Define local PostgreSQL or document the Supabase connection.
-- [ ] Define local Redis.
-- [ ] Create health checks for the API and dependencies.
-- [ ] Configure Drizzle and migrations.
-- [ ] Create scripts for migrations and seed data.
-- [ ] Document ports, variables, and troubleshooting.
+- [x] Create `docker-compose.yml` for required local services.
+- [x] Define local PostgreSQL or document the Supabase connection.
+- [x] Define local Redis.
+- [x] Create health checks for the API and dependencies.
+- [x] Configure Drizzle and migrations.
+- [x] Create scripts for migrations and seed data.
+- [x] Document ports, variables, and troubleshooting.
 
 ### Exit criteria
 
-- [ ] A clean environment can start dependencies with Docker Compose.
-- [ ] The API connects to PostgreSQL and Redis.
-- [ ] Migrations run reproducibly.
-- [ ] Seed data can be reset without manual intervention.
+- [x] A clean environment can start dependencies with Docker Compose.
+- [x] The API connects to PostgreSQL and Redis.
+- [x] Migrations run reproducibly.
+- [x] Seed data can be reset without manual intervention.
 
 ### Required review
 
@@ -279,6 +281,7 @@ Turn the project into a strong portfolio piece and evaluate advanced improvement
 
 ## Decision and AGENTS.md change log
 
-| Date       | Phase | Decision or change      | Reason                                    | Update `AGENTS.md`? |
-| ---------- | ----- | ----------------------- | ----------------------------------------- | ------------------- |
-| 2026-08-09 | 0     | Created the phased plan | Enable incremental review and reduce risk | No                  |
+| Date       | Phase | Decision or change                                                                                                  | Reason                                                                                                  | Update `AGENTS.md`? |
+| ---------- | ----- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------- |
+| 2026-08-09 | 0     | Created the phased plan                                                                                             | Enable incremental review and reduce risk                                                               | No                  |
+| 2026-08-09 | 2     | Use Docker Compose with PostgreSQL and Redis; keep migration state in Drizzle and seed only infrastructure metadata | Provide a reproducible local environment without implementing Phase 3 authentication or tenant entities | No                  |

@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc --outDir dist --noEmit false",
+    "db:generate": "drizzle-kit generate --config drizzle.config.ts",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:reset": "tsx src/db/reset.ts",
+    "db:seed": "tsx src/db/seed.ts",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint .",
     "start": "node dist/server.js",
@@ -12,10 +16,15 @@
   },
   "dependencies": {
     "@teamflow/types": "workspace:*",
-    "fastify": "^5.5.0"
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "fastify": "^5.5.0",
+    "postgres": "^3.4.9",
+    "redis": "^6.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
+    "drizzle-kit": "^0.31.10",
     "tsx": "^4.20.5"
   }
 }

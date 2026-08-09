@@ -16,3 +16,16 @@ Completed:
 - Product, domain, authorization, and context diagrams added.
 
 Next gate: review the Phase 0 documents before beginning Phase 1 monorepo and tooling work.
+
+## Phase 2 — Local development and base infrastructure
+
+Status: Complete, pending review.
+
+Completed:
+
+- Docker Compose PostgreSQL and Redis services with health checks.
+- API dependency readiness checks.
+- Drizzle configuration, versioned migration, migration/reset/seed scripts.
+- Local environment, ports, and troubleshooting documentation.
+
+Next gate: review environment-variable security and the local strategy before beginning Phase 3 authentication.
