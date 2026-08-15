@@ -110,28 +110,30 @@ Review environment-variable security and the local strategy before implementing 
 
 ## Phase 3 — Authentication and multi-tenancy
 
+Status: [x] Completed — pending required review.
+
 ### Objective
 
 Implement secure access and isolation between organizations.
 
 ### Tasks
 
-- [ ] Integrate Supabase Auth.
-- [ ] Implement login, logout, and account recovery.
-- [ ] Implement email invitations with Resend.
-- [ ] Create users, organizations, and memberships.
-- [ ] Implement roles and API authorization.
-- [ ] Apply `organization_id` to tenant-aware entities.
-- [ ] Add authentication middleware or hooks.
-- [ ] Create auditing for sensitive actions.
+- [x] Integrate Supabase Auth.
+- [x] Implement login, logout, and account recovery.
+- [x] Implement email invitations with Resend.
+- [x] Create users, organizations, and memberships.
+- [x] Implement roles and API authorization.
+- [x] Apply `organization_id` to tenant-aware entities.
+- [x] Add authentication middleware or hooks.
+- [x] Create auditing for sensitive actions.
 
 ### Exit criteria
 
-- [ ] A user can register and log in.
-- [ ] An owner can invite users.
-- [ ] A user cannot read or modify another organization's data.
-- [ ] Authentication and isolation tests pass.
-- [ ] Supabase and Resend keys never reach the client.
+- [x] A user can register and log in.
+- [x] An owner can invite users.
+- [x] A user cannot read or modify another organization's data.
+- [x] Authentication and isolation tests pass.
+- [x] Supabase and Resend keys never reach the client.
 
 ### Required review
 
@@ -281,7 +283,8 @@ Turn the project into a strong portfolio piece and evaluate advanced improvement
 
 ## Decision and AGENTS.md change log
 
-| Date       | Phase | Decision or change                                                                                                  | Reason                                                                                                  | Update `AGENTS.md`? |
-| ---------- | ----- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------- |
-| 2026-08-09 | 0     | Created the phased plan                                                                                             | Enable incremental review and reduce risk                                                               | No                  |
-| 2026-08-09 | 2     | Use Docker Compose with PostgreSQL and Redis; keep migration state in Drizzle and seed only infrastructure metadata | Provide a reproducible local environment without implementing Phase 3 authentication or tenant entities | No                  |
+| Date       | Phase | Decision or change                                                                                                                                                   | Reason                                                                                                  | Update `AGENTS.md`?                         |
+| ---------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| 2026-08-09 | 0     | Created the phased plan                                                                                                                                              | Enable incremental review and reduce risk                                                               | No                                          |
+| 2026-08-09 | 2     | Use Docker Compose with PostgreSQL and Redis; keep migration state in Drizzle and seed only infrastructure metadata                                                  | Provide a reproducible local environment without implementing Phase 3 authentication or tenant entities | No                                          |
+| 2026-08-09 | 3     | Integrate Supabase Auth with HttpOnly sessions, bearer-token API validation, organization membership authorization, Resend invitations, and append-only audit events | Establish secure identity and tenant isolation before business-domain resources                         | Yes — confirmed in `AGENTS.md` and ADR 0004 |

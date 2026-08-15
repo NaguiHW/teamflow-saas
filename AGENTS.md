@@ -193,11 +193,11 @@ export default TaskCard;
 - The frontend is deployed to Vercel and the API to Render.
 - Docker Compose is required for local development and CI.
 - AWS and Terraform are a later phase.
+- Supabase Auth sessions use secure HttpOnly cookies at the API boundary, and protected API requests accept validated bearer tokens.
 
 ## Pending decisions
 
 - Full subscription enforcement behavior.
-- Exact cookie, session, and Next.js-to-API communication implementation.
 - Complete resource-level permission model.
 
 ## graphify

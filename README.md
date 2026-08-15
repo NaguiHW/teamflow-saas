@@ -63,4 +63,8 @@ docker compose down
 
 The local defaults are PostgreSQL `localhost:5432` and Redis `localhost:6379`. Override `DATABASE_URL`, `REDIS_URL`, and the `POSTGRES_*` or `REDIS_PORT` variables in `.env` when ports or credentials differ. Never commit real credentials.
 
-Phase 2 establishes local infrastructure and migration tooling. Authentication and tenant entities remain deferred to Phase 3.
+Phase 2 establishes local infrastructure and migration tooling; Phase 3 adds authentication and tenant entities.
+
+## Authentication configuration
+
+Phase 3 adds Supabase Auth and organization membership authorization. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in `apps/api/.env`; set `RESEND_API_KEY` and `RESEND_FROM_EMAIL` to deliver invitations. The API keeps sessions in secure HttpOnly cookies and validates bearer tokens on protected requests.

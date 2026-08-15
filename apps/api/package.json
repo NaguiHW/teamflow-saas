@@ -12,15 +12,20 @@
     "dev": "tsx watch src/server.ts",
     "lint": "eslint .",
     "start": "node dist/server.js",
+    "test": "tsx --test src/**/*.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fastify/cookie": "^11.1.2",
+    "@supabase/supabase-js": "^2.112.2",
     "@teamflow/types": "workspace:*",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "fastify": "^5.5.0",
     "postgres": "^3.4.9",
-    "redis": "^6.2.0"
+    "redis": "^6.2.0",
+    "resend": "^6.18.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

@@ -29,3 +29,18 @@ Completed:
 - Local environment, ports, and troubleshooting documentation.
 
 Next gate: review environment-variable security and the local strategy before beginning Phase 3 authentication.
+
+## Phase 3 — Authentication and multi-tenancy
+
+Status: Complete, pending review.
+
+Completed:
+
+- Supabase Auth registration, login, refresh, logout, recovery, and current-user endpoints.
+- Secure HttpOnly session cookies and bearer-token authentication hooks.
+- Organizations, profiles, memberships, roles, invitations, and audit events.
+- Backend membership authorization and organization-scoped queries.
+- Resend invitation delivery with hashed, expiring invitation tokens.
+- Authentication and role-policy regression tests.
+
+Next gate: review the security model before creating business functionality in Phase 4.
