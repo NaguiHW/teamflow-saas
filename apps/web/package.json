@@ -6,6 +6,8 @@
     "build": "next build",
     "dev": "next dev --port 3000",
     "lint": "eslint .",
+    "test:components": "vitest run",
+    "test:e2e": "playwright test",
     "start": "next start --port 3000",
     "typecheck": "tsc --noEmit"
   },
@@ -15,10 +17,18 @@
     "next": "^15.5.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-toastify": "^11.1.0",
     "sass": "^1.90.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
     "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9"
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^6.0.5",
+    "jsdom": "^30.0.1",
+    "msw": "^2.15.0",
+    "vitest": "^4.1.10"
   }
 }

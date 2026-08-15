@@ -4,3 +4,6 @@ dist
 coverage
 graphify-out
 pnpm-lock.yaml
+apps/api/drizzle/meta/
+apps/web/public/mockServiceWorker.js
+test-results/

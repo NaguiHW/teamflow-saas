@@ -44,7 +44,7 @@ Next gate: review environment-variable security and the local strategy before th
 
 ## Phase 3 — Frontend-first product flow with mock data
 
-Status: Not started.
+Status: In progress — browser verification is pending system Chromium dependencies.
 
 Scope:
 
@@ -55,6 +55,11 @@ Scope:
 - Add loading, error, empty, success, and optimistic-update states.
 - Verify responsive behavior on mobile, tablet, and desktop viewports.
 - Add component and Playwright tests against the mock API.
+
+Remaining:
+
+- Run the Playwright suite after the environment provides Chromium system dependencies.
+- Verify the main flow on mobile, tablet, and desktop viewports.
 
 Next gate: review UX, the mock API contract, and component structure before Phase 4 authentication.
 

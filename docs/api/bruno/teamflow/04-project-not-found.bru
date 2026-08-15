@@ -1,0 +1,16 @@
+meta {
+  name: Project not found example
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/mock-api/projects/unknown-project/tasks
+  body: none
+}
+
+docs {
+  # Error response example
+
+  Expected response: `404` with `{ "error": { "code": "PROJECT_NOT_FOUND" } }`.
+}

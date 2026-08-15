@@ -122,27 +122,27 @@ Build and validate the first TeamFlow experience before connecting authenticatio
 
 ### Tasks
 
-- [ ] Define the frontend information architecture and primary user journey.
-- [ ] Create typed fixtures for organizations, projects, tasks, labels, and activity.
-- [ ] Add Mock Service Worker (MSW) handlers for the planned REST endpoints.
-- [ ] Create initial Bruno requests for the mocked REST endpoints under `docs/api/bruno/`.
-- [ ] Build the public home page and authenticated-dashboard shell.
-- [ ] Build project and task views using mock responses.
-- [ ] Add loading, error, empty, and optimistic-update states.
-- [ ] Make the main flow responsive and verify mobile, tablet, and desktop layouts.
-- [ ] Keep mock data and handlers outside React components.
-- [ ] Ensure mock responses follow the shared types and Zod schemas.
-- [ ] Add initial component and Playwright tests against the mock API.
+- [x] Define the frontend information architecture and primary user journey.
+- [x] Create typed fixtures for organizations, projects, tasks, labels, and activity.
+- [x] Add Mock Service Worker (MSW) handlers for the planned REST endpoints.
+- [x] Create initial Bruno requests for the mocked REST endpoints under `docs/api/bruno/`.
+- [x] Build the public home page and authenticated-dashboard shell.
+- [x] Build project and task views using mock responses.
+- [x] Add loading, error, empty, and optimistic-update states.
+- [~] Make the main flow responsive and verify mobile, tablet, and desktop layouts. Browser verification is pending system Chromium dependencies.
+- [x] Keep mock data and handlers outside React components.
+- [x] Ensure mock responses follow the shared types and Zod schemas.
+- [x] Add initial component and Playwright tests against the mock API.
 
 ### Exit criteria
 
-- [ ] A user can explore the main product flow using mock data.
-- [ ] No business fixture is hardcoded inside a React component.
-- [ ] The mock API can be replaced by the real API without changing component contracts.
-- [ ] Bruno requests document the method, URL, headers, body, and expected responses for the mocked endpoints.
-- [ ] Loading, error, empty, and success states are visible and tested.
-- [ ] The main flow works without horizontal scrolling on supported viewports.
-- [ ] Mock mode is explicit and disabled for production builds.
+- [~] A user can explore the main product flow using mock data. Playwright execution is pending system Chromium dependencies.
+- [x] No business fixture is hardcoded inside a React component.
+- [x] The mock API can be replaced by the real API without changing component contracts.
+- [x] Bruno requests document the method, URL, headers, body, and expected responses for the mocked endpoints.
+- [~] Loading, error, empty, and success states are visible and tested. Browser execution remains pending.
+- [~] The main flow works without horizontal scrolling on supported viewports. Browser verification remains pending.
+- [x] Mock mode is explicit and disabled for production builds.
 
 ### Required review
 

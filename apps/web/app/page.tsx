@@ -1,4 +1,5 @@
 import type { TaskStatus } from "@teamflow/types";
+import Link from "next/link";
 import Button from "@teamflow/ui/Button";
 import styles from "./page.module.scss";
 
@@ -13,7 +14,9 @@ const HomePage = () => (
         TeamFlow gives organizations a clear place to turn projects into
         accountable, collaborative tasks.
       </p>
-      <Button label="Create your workspace" />
+      <Link className={styles.heroLink} href="/dashboard">
+        <Button label="Explore the workspace" />
+      </Link>
       <p className={styles.statuses}>
         Shared task statuses: {taskStatuses.join(" · ")}
       </p>

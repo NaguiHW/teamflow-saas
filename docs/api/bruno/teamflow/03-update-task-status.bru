@@ -1,0 +1,29 @@
+meta {
+  name: Update mock task status
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseUrl}}/mock-api/tasks/{{taskId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "status": "done"
+  }
+}
+
+docs {
+  # Update task status
+
+  Authentication: none in mock mode; the real endpoint will require an authenticated organization member.
+
+  Expected response: `200` with the updated `task`.
+  Error cases: `404` with `TASK_NOT_FOUND`; `400` for an invalid status.
+}
