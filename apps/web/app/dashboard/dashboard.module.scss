@@ -38,6 +38,9 @@
   border-radius: 0.85rem;
   background: #fff;
 }
+.sidebar > .workspacePicker {
+  margin-top: 0;
+}
 
 .workspacePicker strong,
 .sidebarFooter strong {
@@ -113,10 +116,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   min-height: 5rem;
   padding: 0 3.25rem;
   border-bottom: 1px solid #e2e9e3;
   background: rgb(251 252 250 / 80%);
+}
+.topbar > div {
+  min-width: 0;
 }
 .breadcrumb {
   margin: 0;
@@ -230,6 +237,7 @@
   display: grid;
   width: 2.25rem;
   height: 2.25rem;
+  flex: 0 0 2.25rem;
   place-items: center;
   border-radius: 0.7rem;
   background: #e8f1eb;
@@ -250,7 +258,12 @@
   color: #6c7e77;
   font-size: 0.72rem;
 }
+.metricCard > div {
+  min-width: 0;
+}
 .metricCard small {
+  margin-left: auto;
+  min-width: 0;
   margin-left: auto;
   color: #72917e;
   font-size: 0.64rem;
@@ -286,6 +299,9 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
+}
+.projectArea {
+  min-width: 0;
 }
 .projectCard,
 .projectCardActive {
@@ -564,17 +580,62 @@
 }
 
 @media (max-width: 960px) {
+  .appShell {
+    display: grid;
+    grid-template-areas:
+      "topbar"
+      "sidebar"
+      "content";
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mainContent {
+    display: contents;
+  }
   .sidebar {
-    width: 13rem;
-    flex-basis: 13rem;
+    grid-area: sidebar;
+    width: 100%;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border-right: 0;
+    border-bottom: 1px solid #dfe7e1;
+  }
+  .brand {
+    flex: 0 0 auto;
+  }
+  .workspacePicker,
+  .sidebarFooter {
+    margin-top: 0;
+  }
+  .workspacePicker {
+    flex: 0 1 13rem;
+    min-width: 0;
+  }
+  .nav {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: 0;
+  }
+  .sidebarFooter {
+    margin-left: auto;
+  }
+  .topbar {
+    grid-area: topbar;
+  }
+  .contentWrap {
+    grid-area: content;
+  }
+  .workspaceGrid {
+    grid-template-columns: 1fr;
   }
   .contentWrap,
   .topbar {
     padding-right: 2rem;
     padding-left: 2rem;
-  }
-  .workspaceGrid {
-    grid-template-columns: 1fr;
   }
   .activity {
     padding: 2rem 0 0;
@@ -587,19 +648,32 @@
   .appShell {
     display: block;
   }
+  .mainContent {
+    display: block;
+  }
   .sidebar {
     width: 100%;
     flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
     padding: 1rem;
     border-right: 0;
     border-bottom: 1px solid #dfe7e1;
   }
   .workspacePicker {
+    flex: none;
     margin-top: 1rem;
   }
   .nav {
     display: flex;
+    flex: none;
+    width: 100%;
     margin-top: 0.8rem;
+  }
+  .sidebarFooter {
+    margin-left: 0;
   }
   .sidebarFooter {
     display: none;
@@ -610,6 +684,9 @@
   }
   .contentWrap {
     padding: 2rem 1rem;
+  }
+  .activity {
+    padding: 1.25rem 1rem;
   }
   .welcome {
     display: block;

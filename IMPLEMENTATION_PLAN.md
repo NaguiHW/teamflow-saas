@@ -11,6 +11,7 @@ This document defines the incremental development of the project. The AI must co
 - Do not implement future functionality during the current phase.
 - Keep changes small and easy to review.
 - Update the phase status when work is complete.
+- Determine the active phase from the earliest incomplete exit criteria or review checkpoint. Existing implementation from a later phase does not advance the active phase and must not be extended until the earlier gate is cleared.
 - Whenever an endpoint is created or changed, create or update its corresponding Bruno request under `docs/api/bruno/`.
 - Bruno requests must document the HTTP method, URL, headers, authentication, request body, successful response, and relevant error responses.
 - Never commit real credentials or secrets to Bruno files; use environment variables or example values.
@@ -105,16 +106,18 @@ Allow any developer to run the project locally with Docker Compose.
 
 ### Exit criteria
 
-- [ ] A clean environment can start dependencies with Docker Compose.
-- [ ] The API connects to PostgreSQL and Redis.
-- [ ] Migrations run reproducibly.
-- [ ] Seed data can be reset without manual intervention.
+- [x] A clean environment can start dependencies with Docker Compose.
+- [x] The API connects to PostgreSQL and Redis.
+- [x] Migrations run reproducibly.
+- [x] Seed data can be reset without manual intervention.
 
 ### Required review
 
 Review environment-variable security and the local strategy before implementing authentication.
 
 ## Phase 3 — Frontend-first product flow with mock data
+
+Status: [x] Completed — responsive flow reviewed.
 
 ### Objective
 
@@ -129,19 +132,19 @@ Build and validate the first TeamFlow experience before connecting authenticatio
 - [x] Build the public home page and authenticated-dashboard shell.
 - [x] Build project and task views using mock responses.
 - [x] Add loading, error, empty, and optimistic-update states.
-- [~] Make the main flow responsive and verify mobile, tablet, and desktop layouts. Browser verification is pending system Chromium dependencies.
+- [x] Make the main flow responsive and verify mobile, tablet, and desktop layouts.
 - [x] Keep mock data and handlers outside React components.
 - [x] Ensure mock responses follow the shared types and Zod schemas.
 - [x] Add initial component and Playwright tests against the mock API.
 
 ### Exit criteria
 
-- [~] A user can explore the main product flow using mock data. Playwright execution is pending system Chromium dependencies.
+- [x] A user can explore the main product flow using mock data.
 - [x] No business fixture is hardcoded inside a React component.
 - [x] The mock API can be replaced by the real API without changing component contracts.
 - [x] Bruno requests document the method, URL, headers, body, and expected responses for the mocked endpoints.
-- [~] Loading, error, empty, and success states are visible and tested. Browser execution remains pending.
-- [~] The main flow works without horizontal scrolling on supported viewports. Browser verification remains pending.
+- [x] Loading, error, empty, and success states are visible and tested.
+- [x] The main flow works without horizontal scrolling on supported viewports.
 - [x] Mock mode is explicit and disabled for production builds.
 
 ### Required review
@@ -212,19 +215,24 @@ Review the API contract, data model, and business rules before building the full
 
 ### Objective
 
-Build a usable, accessible interface that represents the product experience.
+Integrate and harden the approved Phase 3 product experience against the real API,
+with production-ready accessibility, responsive behavior, theming, and localization.
 
 ### Tasks
 
-- [ ] Create public and authenticated layouts.
-- [ ] Implement dashboard navigation.
-- [ ] Implement project and task pages.
-- [ ] Start the dashboard flow with the approved mock API and replace it with the real API without changing component contracts.
+- [ ] Consolidate public and authenticated layouts from the Phase 3 shell.
+- [ ] Harden dashboard navigation, project pages, and task pages for the real API.
+- [ ] Replace the mock transport with the real API without changing component contracts.
 - [ ] Use Server Components by default.
 - [ ] Use Client Components only for interaction and local state.
 - [ ] Implement loading, error, and empty states.
 - [ ] Use Sass, CSS Modules, and responsibility-based components.
+- [ ] Use Lucide React as the default icon library, with Phosphor Icons as a selective complement and React Icons for brand logos.
 - [ ] Use Toastify for visual feedback.
+- [ ] Add light and dark themes using semantic design tokens and CSS variables.
+- [ ] Respect the system color scheme and provide a persisted manual theme toggle.
+- [ ] Add internationalization for English and Spanish using the approved i18n solution.
+- [ ] Keep translations organized by feature and avoid hardcoded user-facing copy.
 - [ ] Add basic accessibility and keyboard navigation.
 - [ ] Add metadata and SEO for public pages.
 
@@ -235,6 +243,8 @@ Build a usable, accessible interface that represents the product experience.
 - [ ] Loading, error, and empty states are covered.
 - [ ] Critical flows have Playwright tests.
 - [ ] The interface works on mobile, tablet, and desktop viewports without horizontal scrolling.
+- [ ] Light and dark themes meet contrast requirements and are covered by UI tests.
+- [ ] Primary flows render correctly in English and Spanish.
 
 ### Required review
 
@@ -327,5 +337,5 @@ Turn the project into a strong portfolio piece and evaluate advanced improvement
 | Date       | Phase | Decision or change                                                                                                                                                   | Reason                                                                                                  | Update `AGENTS.md`?                         |
 | ---------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | 2026-08-09 | 0     | Created the phased plan                                                                                                                                              | Enable incremental review and reduce risk                                                               | No                                          |
-| 2026-08-09 | 2     | Use Docker Compose with PostgreSQL and Redis; keep migration state in Drizzle and seed only infrastructure metadata                                                  | Provide a reproducible local environment without implementing Phase 3 authentication or tenant entities | No                                          |
+| 2026-08-09 | 2     | Use Docker Compose with PostgreSQL and Redis; keep migration state in Drizzle and seed only infrastructure metadata                                                  | Provide a reproducible local environment without implementing Phase 4 authentication or tenant entities | No                                          |
 | 2026-08-09 | 3     | Integrate Supabase Auth with HttpOnly sessions, bearer-token API validation, organization membership authorization, Resend invitations, and append-only audit events | Establish secure identity and tenant isolation before business-domain resources                         | Yes — confirmed in `AGENTS.md` and ADR 0004 |

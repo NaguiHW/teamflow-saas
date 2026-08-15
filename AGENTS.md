@@ -45,6 +45,15 @@ The web application and API remain separate to make frontend and backend respons
 - Keep components small, focused, and easy to test.
 - Build responsive interfaces mobile-first and verify the main flows on mobile, tablet, and desktop viewports.
 - Do not rely on fixed widths that cause horizontal scrolling on supported viewports.
+- Support light and dark themes through semantic design tokens and CSS variables; do not hardcode theme-specific colors inside components.
+- Respect the user's system color-scheme preference on first visit and provide a manual theme toggle with persisted preference.
+- Support English and Spanish through a typed internationalization layer; do not hardcode user-facing copy in components.
+- Keep translation keys organized by feature and provide a fallback locale for missing translations.
+- Use `lucide-react` as the default icon library.
+- Use Phosphor Icons only when Lucide does not provide a suitable icon or a different visual weight is required.
+- Use React Icons selectively for technology and brand logos.
+- Do not mix icon styles arbitrarily within the same feature.
+- Interactive icons must include an accessible label or an associated visible label; decorative icons must use `aria-hidden="true"`.
 - Declarative styles must live in a separate Sass file. TypeScript may select conditional classes but must not contain style blocks.
 - Component-only types may live next to the component; reusable domain types must live in separate files.
 
@@ -169,6 +178,8 @@ export default TaskCard;
 - Never cache organization- or user-specific data without preserving the authorization context.
 - Use `loading.tsx`, `error.tsx`, and empty states in primary routes.
 - Use `next/image`, metadata, and SEO-friendly public routes.
+- Use `next-intl` or the approved project i18n solution for English and Spanish, including locale-aware routing where applicable.
+- Avoid hydration mismatches when reading theme or locale preferences in Client Components.
 - Never use the frontend as the only security layer.
 
 ## Quality and security
@@ -181,6 +192,8 @@ export default TaskCard;
 - Validate inputs with typed schemas.
 - Test permissions, tenant isolation, and concurrency cases.
 - Add unit, integration, and E2E tests for critical flows.
+- Test both light and dark themes, including contrast for critical states and interactive controls.
+- Test English and Spanish rendering for primary flows, including loading, error, empty, and validation messages.
 - Apply rate limiting to login, invitations, and sensitive endpoints.
 - Document technical decisions and trade-offs in `docs/decisions/`.
 

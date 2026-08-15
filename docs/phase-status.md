@@ -31,7 +31,7 @@ Next gate: review the folder structure, scripts, and conventions before relying 
 
 ## Phase 2 — Local development and base infrastructure
 
-Status: Complete, pending review.
+Status: Complete, pending required review.
 
 Completed:
 
@@ -44,7 +44,7 @@ Next gate: review environment-variable security and the local strategy before th
 
 ## Phase 3 — Frontend-first product flow with mock data
 
-Status: In progress — browser verification is pending system Chromium dependencies.
+Status: Complete, pending required review.
 
 Scope:
 
@@ -55,11 +55,6 @@ Scope:
 - Add loading, error, empty, success, and optimistic-update states.
 - Verify responsive behavior on mobile, tablet, and desktop viewports.
 - Add component and Playwright tests against the mock API.
-
-Remaining:
-
-- Run the Playwright suite after the environment provides Chromium system dependencies.
-- Verify the main flow on mobile, tablet, and desktop viewports.
 
 Next gate: review UX, the mock API contract, and component structure before Phase 4 authentication.
 
@@ -103,8 +98,8 @@ Status: Not started.
 
 Scope:
 
-- Public and authenticated layouts, dashboard navigation, project and task pages.
-- Start from the approved mock API and replace it with the real API without changing component contracts.
+- Consolidate the Phase 3 public and authenticated layouts, dashboard navigation, project pages, and task pages.
+- Replace the approved mock transport with the real API without changing component contracts.
 - Loading, error, empty states, Toastify feedback, accessibility, keyboard navigation, metadata, and SEO.
 
 Next gate: review UX, accessibility, responsive behavior, and Server/Client Component decisions before Phase 7.
