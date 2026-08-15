@@ -78,7 +78,7 @@ Next gate: Phase 5 core domain work is in progress.
 
 ## Phase 5 — Core domain: projects and tasks
 
-Status: In progress — Bruno documentation remains pending.
+Status: Complete, pending required review.
 
 Completed:
 
@@ -88,10 +88,6 @@ Completed:
 - Role-aware project, task, label, and comment authorization.
 - Versioned Drizzle migration and indexes for tenant-aware queries.
 - Initial OpenAPI contract and API regression tests.
-
-Remaining:
-
-- Create or update Bruno requests for every endpoint, including success and relevant error cases.
 
 Next gate: review the API contract, data model, business rules, and Bruno collection before Phase 6.
 

@@ -1,0 +1,22 @@
+meta {
+  name: Get task
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/tasks/{{taskId}}
+  body: none
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+docs {
+  # Get task
+
+  Authentication: bearer token; requires any organization membership.
+  Expected response: `200` with `task`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `TASK_NOT_FOUND`.
+}

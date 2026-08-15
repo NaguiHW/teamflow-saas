@@ -8,11 +8,16 @@
 .sidebar {
   width: 17rem;
   flex: 0 0 17rem;
+  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 0;
   padding: 1.5rem 1.15rem 1.15rem;
   border-right: 1px solid #dfe7e1;
   background: #fbfcfa;
+  overflow-y: auto;
 }
 
 .brand {
@@ -37,9 +42,6 @@
   border: 1px solid #e1e9e2;
   border-radius: 0.85rem;
   background: #fff;
-}
-.sidebar > .workspacePicker {
-  margin-top: 0;
 }
 
 .workspacePicker strong,
@@ -107,6 +109,9 @@
 .sidebarFooter {
   margin-top: auto;
 }
+.sidebarFooter .iconButton {
+  margin-left: auto;
+}
 
 .mainContent {
   min-width: 0;
@@ -124,6 +129,9 @@
 }
 .topbar > div {
   min-width: 0;
+}
+.topbarBrand {
+  display: none;
 }
 .breadcrumb {
   margin: 0;
@@ -595,6 +603,8 @@
     grid-area: sidebar;
     width: 100%;
     flex: none;
+    height: auto;
+    max-height: none;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
@@ -602,8 +612,14 @@
     padding: 1rem 2rem;
     border-right: 0;
     border-bottom: 1px solid #dfe7e1;
+    position: static;
+    overflow: visible;
   }
-  .brand {
+  .sidebarBrand {
+    display: none;
+  }
+  .topbarBrand {
+    display: block;
     flex: 0 0 auto;
   }
   .workspacePicker,
@@ -646,14 +662,21 @@
 
 @media (max-width: 700px) {
   .appShell {
-    display: block;
+    display: grid;
+    grid-template-areas:
+      "topbar"
+      "sidebar"
+      "content";
+    grid-template-columns: minmax(0, 1fr);
   }
   .mainContent {
-    display: block;
+    display: contents;
   }
   .sidebar {
     width: 100%;
     flex: none;
+    height: auto;
+    max-height: none;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -661,6 +684,9 @@
     padding: 1rem;
     border-right: 0;
     border-bottom: 1px solid #dfe7e1;
+  }
+  .topbarBrand {
+    display: block;
   }
   .workspacePicker {
     flex: none;
@@ -674,9 +700,8 @@
   }
   .sidebarFooter {
     margin-left: 0;
-  }
-  .sidebarFooter {
-    display: none;
+    display: flex;
+    margin-top: 1rem;
   }
   .topbar {
     min-height: 4.5rem;

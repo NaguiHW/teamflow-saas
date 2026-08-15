@@ -1,0 +1,29 @@
+meta {
+  name: Update task comment
+  type: http
+  seq: 23
+}
+
+patch {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/tasks/{{taskId}}/comments/{{commentId}}
+  body: json
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "body": "The release checklist is approved."
+  }
+}
+
+docs {
+  # Update task comment
+
+  Authentication: bearer token; requires `owner`, `admin`, or `member` membership and the author or a moderator role.
+  Expected response: `200` with `comment`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `COMMENT_NOT_FOUND`; `422` for invalid input.
+}

@@ -1,0 +1,30 @@
+meta {
+  name: Update project
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/projects/{{projectId}}
+  body: json
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "description": "Updated project brief",
+    "status": "active"
+  }
+}
+
+docs {
+  # Update project
+
+  Authentication: bearer token; requires `owner` or `admin` membership.
+  Expected response: `200` with `project`.
+  Error cases: `400` `EMPTY_UPDATE`; `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `PROJECT_NOT_FOUND`; `409` `PROJECT_SLUG_CONFLICT`; `422` for invalid input.
+}

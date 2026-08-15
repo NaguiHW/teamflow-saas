@@ -187,7 +187,7 @@ Review completed before creating business functionality.
 
 ## Phase 5 — Core domain: projects and tasks
 
-Status: [~] In progress — Bruno documentation remains pending.
+Status: [x] Completed — Bruno documentation added; pending required review.
 
 ### Objective
 
@@ -202,7 +202,7 @@ Build TeamFlow's central workflow on top of a stable API.
 - [x] Implement pagination, filtering, and sorting.
 - [x] Define consistent REST errors and responses.
 - [x] Document endpoints with OpenAPI.
-- [ ] Create or update the corresponding Bruno request for every endpoint.
+- [x] Create or update the corresponding Bruno request for every endpoint.
 - [x] Create domain, integration, and authorization tests.
 
 ### Exit criteria
@@ -210,7 +210,7 @@ Build TeamFlow's central workflow on top of a stable API.
 - [x] The main flow works end to end through the API.
 - [x] Mutations validate permissions and inputs.
 - [x] The API has initial OpenAPI documentation.
-- [ ] Bruno collections cover successful responses and relevant error cases.
+- [x] Bruno collections cover successful responses and relevant error cases.
 - [x] Important queries have justified indexes.
 - [x] Coverage includes critical domain rules.
 

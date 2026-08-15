@@ -1,0 +1,22 @@
+meta {
+  name: List task comments
+  type: http
+  seq: 21
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/tasks/{{taskId}}/comments?page=1&pageSize=20
+  body: none
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+docs {
+  # List task comments
+
+  Authentication: bearer token; requires any organization membership.
+  Expected response: `200` with `items` and `pagination`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `TASK_NOT_FOUND`; `422` for invalid pagination.
+}

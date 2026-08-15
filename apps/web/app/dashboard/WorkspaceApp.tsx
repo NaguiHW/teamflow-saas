@@ -99,6 +99,9 @@ const WorkspaceApp = () => {
   return (
     <div className={styles.appShell}>
       <aside className={styles.sidebar}>
+        <Link className={`${styles.brand} ${styles.sidebarBrand}`} href="/">
+          team<span>flow</span>
+        </Link>
         <div className={styles.workspacePicker}>
           <span className={styles.workspaceAvatar}>NS</span>
           <span>
@@ -131,7 +134,7 @@ const WorkspaceApp = () => {
       </aside>
       <main className={styles.mainContent} id="overview">
         <header className={styles.topbar}>
-          <Link className={styles.brand} href="/">
+          <Link className={`${styles.brand} ${styles.topbarBrand}`} href="/">
             team<span>flow</span>
           </Link>
           <div>

@@ -1,0 +1,22 @@
+meta {
+  name: Attach label to task
+  type: http
+  seq: 19
+}
+
+post {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/tasks/{{taskId}}/labels/{{labelId}}
+  body: none
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+docs {
+  # Attach label to task
+
+  Authentication: bearer token; requires `owner`, `admin`, or `member` membership.
+  Expected response: `201` with `{ "attached": true }`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `TASK_NOT_FOUND` or `LABEL_NOT_FOUND`.
+}
