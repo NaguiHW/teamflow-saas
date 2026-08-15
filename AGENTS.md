@@ -54,6 +54,10 @@ The web application and API remain separate to make frontend and backend respons
 - Use React Icons selectively for technology and brand logos.
 - Do not mix icon styles arbitrarily within the same feature.
 - Interactive icons must include an accessible label or an associated visible label; decorative icons must use `aria-hidden="true"`.
+- Every interactive control must define clear `hover`, `active`, `focus-visible`, and `disabled` states.
+- Do not rely on `hover` as the only feedback mechanism; touch devices must receive immediate `active` or state-change feedback.
+- Focus indicators must remain visible for keyboard users and meet contrast requirements.
+- Disabled controls must not appear interactive and must not trigger hover or active behavior.
 - Declarative styles must live in a separate Sass file. TypeScript may select conditional classes but must not contain style blocks.
 - Component-only types may live next to the component; reusable domain types must live in separate files.
 

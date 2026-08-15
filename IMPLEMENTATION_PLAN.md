@@ -234,6 +234,8 @@ with production-ready accessibility, responsive behavior, theming, and localizat
 - [ ] Add internationalization for English and Spanish using the approved i18n solution.
 - [ ] Keep translations organized by feature and avoid hardcoded user-facing copy.
 - [ ] Add basic accessibility and keyboard navigation.
+- [ ] Define and implement `hover`, `active`, `focus-visible`, and `disabled` states for interactive controls.
+- [ ] Verify touch-friendly feedback without relying exclusively on `hover`.
 - [ ] Add metadata and SEO for public pages.
 
 ### Exit criteria
