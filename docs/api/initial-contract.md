@@ -19,13 +19,13 @@ Resource routes are organization-scoped through authenticated membership context
 
 - JSON request and response bodies.
 - Zod validation at the API boundary.
-- OpenAPI documentation generated from the route schemas.
+- OpenAPI documentation is maintained in the versioned Phase 5 contract.
 - List responses contain `items` and pagination metadata: `page`, `pageSize`, and `total`.
 - List endpoints support bounded page size, filtering, sorting, and search where relevant.
 - Mutations return the created or updated resource and record an audit event when applicable.
 
-The Phase 4 OpenAPI contract is maintained in
-[`phase-4-openapi.yaml`](./phase-4-openapi.yaml).
+The Phase 5 OpenAPI contract is maintained in
+[`phase-5-openapi.yaml`](./phase-5-openapi.yaml).
 
 ## Error shape
 

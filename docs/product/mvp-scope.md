@@ -23,4 +23,4 @@
 - Real-time collaboration and notifications beyond invitation email.
 - Custom roles and a fully configurable permission editor.
 
-Out-of-scope items may be evaluated in Phase 8 and must not shape the MVP implementation beyond clean extension points.
+Out-of-scope items may be evaluated in Phase 9 and must not shape the MVP implementation beyond clean extension points.

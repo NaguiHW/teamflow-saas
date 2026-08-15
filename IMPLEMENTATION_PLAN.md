@@ -11,6 +11,12 @@ This document defines the incremental development of the project. The AI must co
 - Do not implement future functionality during the current phase.
 - Keep changes small and easy to review.
 - Update the phase status when work is complete.
+- Whenever an endpoint is created or changed, create or update its corresponding Bruno request under `docs/api/bruno/`.
+- Bruno requests must document the HTTP method, URL, headers, authentication, request body, successful response, and relevant error responses.
+- Never commit real credentials or secrets to Bruno files; use environment variables or example values.
+- All frontend work must follow a mobile-first responsive approach.
+- Every relevant screen must be verified on mobile, tablet, and desktop viewports.
+- Avoid fixed widths or layouts that cause horizontal scrolling.
 
 ## Statuses
 
@@ -99,18 +105,50 @@ Allow any developer to run the project locally with Docker Compose.
 
 ### Exit criteria
 
-- [x] A clean environment can start dependencies with Docker Compose.
-- [x] The API connects to PostgreSQL and Redis.
-- [x] Migrations run reproducibly.
-- [x] Seed data can be reset without manual intervention.
+- [ ] A clean environment can start dependencies with Docker Compose.
+- [ ] The API connects to PostgreSQL and Redis.
+- [ ] Migrations run reproducibly.
+- [ ] Seed data can be reset without manual intervention.
 
 ### Required review
 
 Review environment-variable security and the local strategy before implementing authentication.
 
-## Phase 3 — Authentication and multi-tenancy
+## Phase 3 — Frontend-first product flow with mock data
 
-Status: [x] Completed — pending required review.
+### Objective
+
+Build and validate the first TeamFlow experience before connecting authentication or the real API.
+
+### Tasks
+
+- [ ] Define the frontend information architecture and primary user journey.
+- [ ] Create typed fixtures for organizations, projects, tasks, labels, and activity.
+- [ ] Add Mock Service Worker (MSW) handlers for the planned REST endpoints.
+- [ ] Create initial Bruno requests for the mocked REST endpoints under `docs/api/bruno/`.
+- [ ] Build the public home page and authenticated-dashboard shell.
+- [ ] Build project and task views using mock responses.
+- [ ] Add loading, error, empty, and optimistic-update states.
+- [ ] Make the main flow responsive and verify mobile, tablet, and desktop layouts.
+- [ ] Keep mock data and handlers outside React components.
+- [ ] Ensure mock responses follow the shared types and Zod schemas.
+- [ ] Add initial component and Playwright tests against the mock API.
+
+### Exit criteria
+
+- [ ] A user can explore the main product flow using mock data.
+- [ ] No business fixture is hardcoded inside a React component.
+- [ ] The mock API can be replaced by the real API without changing component contracts.
+- [ ] Bruno requests document the method, URL, headers, body, and expected responses for the mocked endpoints.
+- [ ] Loading, error, empty, and success states are visible and tested.
+- [ ] The main flow works without horizontal scrolling on supported viewports.
+- [ ] Mock mode is explicit and disabled for production builds.
+
+### Required review
+
+Stop and review the UX, mock API contract, and component structure before implementing authentication.
+
+## Phase 4 — Authentication and multi-tenancy
 
 ### Objective
 
@@ -139,9 +177,7 @@ Implement secure access and isolation between organizations.
 
 Stop and review the security model before creating business functionality.
 
-## Phase 4 — Core domain: projects and tasks
-
-Status: [x] Completed — pending required review.
+## Phase 5 — Core domain: projects and tasks
 
 ### Objective
 
@@ -156,6 +192,7 @@ Build TeamFlow's central workflow on top of a stable API.
 - [x] Implement pagination, filtering, and sorting.
 - [x] Define consistent REST errors and responses.
 - [x] Document endpoints with OpenAPI.
+- [ ] Create or update the corresponding Bruno request for every endpoint.
 - [x] Create domain, integration, and authorization tests.
 
 ### Exit criteria
@@ -163,6 +200,7 @@ Build TeamFlow's central workflow on top of a stable API.
 - [x] The main flow works end to end through the API.
 - [x] Mutations validate permissions and inputs.
 - [x] The API has initial OpenAPI documentation.
+- [ ] Bruno collections cover successful responses and relevant error cases.
 - [x] Important queries have justified indexes.
 - [x] Coverage includes critical domain rules.
 
@@ -170,7 +208,7 @@ Build TeamFlow's central workflow on top of a stable API.
 
 Review the API contract, data model, and business rules before building the full dashboard.
 
-## Phase 5 — Next.js dashboard
+## Phase 6 — Next.js dashboard integration
 
 ### Objective
 
@@ -181,6 +219,7 @@ Build a usable, accessible interface that represents the product experience.
 - [ ] Create public and authenticated layouts.
 - [ ] Implement dashboard navigation.
 - [ ] Implement project and task pages.
+- [ ] Start the dashboard flow with the approved mock API and replace it with the real API without changing component contracts.
 - [ ] Use Server Components by default.
 - [ ] Use Client Components only for interaction and local state.
 - [ ] Implement loading, error, and empty states.
@@ -195,13 +234,13 @@ Build a usable, accessible interface that represents the product experience.
 - [ ] No secrets or authorization rules live only in the client.
 - [ ] Loading, error, and empty states are covered.
 - [ ] Critical flows have Playwright tests.
-- [ ] The interface works on mobile and desktop viewports.
+- [ ] The interface works on mobile, tablet, and desktop viewports without horizontal scrolling.
 
 ### Required review
 
 Review UX, accessibility, and Server/Client Component decisions before adding secondary functionality.
 
-## Phase 6 — Quality, security, and performance
+## Phase 7 — Quality, security, and performance
 
 ### Objective
 
@@ -230,7 +269,7 @@ Raise the MVP to a production-demonstrable level.
 
 Review CI, coverage, and security results before public deployment.
 
-## Phase 7 — Deployment and public demo
+## Phase 8 — Deployment and public demo
 
 ### Objective
 
@@ -260,7 +299,7 @@ Publish a functional and reproducible portfolio demo.
 
 Review the complete demo before starting AWS or infrastructure improvements.
 
-## Phase 8 — Portfolio and advanced phase
+## Phase 9 — Portfolio and advanced phase
 
 ### Objective
 

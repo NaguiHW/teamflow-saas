@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: TeamFlow API
   version: 0.1.0
-  description: Phase 4 project, task, label, and comment contract.
+  description: Phase 5 project, task, label, and comment contract.
 servers:
   - url: http://localhost:4000
 security:

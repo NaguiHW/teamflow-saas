@@ -43,6 +43,8 @@ The web application and API remain separate to make frontend and backend respons
 - Styles must use Sass and CSS Modules, for example `TaskCard.module.scss`.
 - Create components around visual or business responsibilities, even when they are not initially reused. Avoid artificial components for every HTML element without its own behavior or responsibility.
 - Keep components small, focused, and easy to test.
+- Build responsive interfaces mobile-first and verify the main flows on mobile, tablet, and desktop viewports.
+- Do not rely on fixed widths that cause horizontal scrolling on supported viewports.
 - Declarative styles must live in a separate Sass file. TypeScript may select conditional classes but must not contain style blocks.
 - Component-only types may live next to the component; reusable domain types must live in separate files.
 
@@ -148,6 +150,9 @@ export default TaskCard;
 - Every query must be scoped by `organization_id` and validated on the server.
 - Authorization belongs in the backend; hiding buttons in React is not security.
 - API responses must use a consistent error format.
+- Whenever an endpoint is created or changed, create or update its Bruno request collection under `docs/api/bruno/`.
+- Bruno requests must include the method, URL, headers, authentication requirements, example body, expected response, and relevant error cases.
+- Bruno collections must never contain real secrets; use environment variables and provide a safe example environment file.
 - Migrations are versioned; production must never be modified manually.
 - Keep a modular monolith until there is a measurable reason to split services.
 - Secrets must only live in environment variables or a secret manager.
@@ -168,6 +173,11 @@ export default TaskCard;
 
 ## Quality and security
 
+- Develop the first product flows frontend-first using typed mock data and Mock Service Worker (MSW).
+- Keep mock handlers and fixtures outside React components, preferably under `apps/web/src/mocks/` or a shared package.
+- Mock responses must follow the same API contracts and Zod schemas planned for the real API.
+- Mock mode must be explicit and disabled in production builds.
+- Never treat mock authentication or client-side permissions as real security.
 - Validate inputs with typed schemas.
 - Test permissions, tenant isolation, and concurrency cases.
 - Add unit, integration, and E2E tests for critical flows.

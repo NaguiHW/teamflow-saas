@@ -1,8 +1,8 @@
-# ADR 0004: Phase 3 Authentication and Multi-Tenancy
+# ADR 0004: Phase 4 Authentication and Multi-Tenancy
 
 - Status: Accepted
 - Date: 2026-08-09
-- Phase: 3
+- Phase: 4
 
 ## Decisions
 
