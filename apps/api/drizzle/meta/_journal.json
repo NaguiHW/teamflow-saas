@@ -15,6 +15,13 @@
       "when": 1786293428923,
       "tag": "0001_shocking_skrulls",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786805814707,
+      "tag": "0002_curious_karen_page",
+      "breakpoints": true
     }
   ]
 }

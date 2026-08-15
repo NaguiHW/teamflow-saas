@@ -6,6 +6,8 @@ import { checkRedis } from "./db/redis.js";
 import { ApiError } from "./errors.js";
 import authRoutes from "./auth/routes.js";
 import organizationRoutes from "./organizations/routes.js";
+import projectRoutes from "./projects/routes.js";
+import taskRoutes from "./tasks/routes.js";
 
 const supportedTaskStatuses: TaskStatus[] = ["todo", "in_progress", "done"];
 
@@ -58,6 +60,8 @@ const createApp = (): FastifyInstance => {
 
   void app.register(authRoutes);
   void app.register(organizationRoutes);
+  void app.register(projectRoutes);
+  void app.register(taskRoutes);
 
   return app;
 };

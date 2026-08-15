@@ -44,3 +44,19 @@ Completed:
 - Authentication and role-policy regression tests.
 
 Next gate: review the security model before creating business functionality in Phase 4.
+
+## Phase 4 — Core domain: projects and tasks
+
+Status: Complete, pending review.
+
+Completed:
+
+- Projects with organization-scoped CRUD and active/archived status.
+- Tasks with organization-scoped CRUD, status, due dates, assignment, search, filters, sorting, and pagination.
+- Organization-scoped labels and task-label assignment.
+- Organization-scoped task comments with author/moderator mutation rules.
+- Role-aware project, task, label, and comment authorization.
+- Versioned Drizzle migration and indexes for tenant-aware queries.
+- Initial OpenAPI contract and API regression tests.
+
+Next gate: review the Phase 4 API contract and data model before building the dashboard in Phase 5.

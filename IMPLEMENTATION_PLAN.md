@@ -141,28 +141,30 @@ Stop and review the security model before creating business functionality.
 
 ## Phase 4 — Core domain: projects and tasks
 
+Status: [x] Completed — pending required review.
+
 ### Objective
 
 Build TeamFlow's central workflow on top of a stable API.
 
 ### Tasks
 
-- [ ] Create projects.
-- [ ] Create, edit, complete, and delete tasks.
-- [ ] Add labels and due dates.
-- [ ] Add comments.
-- [ ] Implement pagination, filtering, and sorting.
-- [ ] Define consistent REST errors and responses.
-- [ ] Document endpoints with OpenAPI.
-- [ ] Create domain, integration, and authorization tests.
+- [x] Create projects.
+- [x] Create, edit, complete, and delete tasks.
+- [x] Add labels and due dates.
+- [x] Add comments.
+- [x] Implement pagination, filtering, and sorting.
+- [x] Define consistent REST errors and responses.
+- [x] Document endpoints with OpenAPI.
+- [x] Create domain, integration, and authorization tests.
 
 ### Exit criteria
 
-- [ ] The main flow works end to end through the API.
-- [ ] Mutations validate permissions and inputs.
-- [ ] The API has initial OpenAPI documentation.
-- [ ] Important queries have justified indexes.
-- [ ] Coverage includes critical domain rules.
+- [x] The main flow works end to end through the API.
+- [x] Mutations validate permissions and inputs.
+- [x] The API has initial OpenAPI documentation.
+- [x] Important queries have justified indexes.
+- [x] Coverage includes critical domain rules.
 
 ### Required review
 

@@ -6,3 +6,11 @@ export const canManageMembers = (role: Role) =>
 
 export const canReadAuditEvents = (role: Role) =>
   role === "owner" || role === "admin";
+
+export const canManageProjects = (role: Role) =>
+  role === "owner" || role === "admin";
+
+export const canManageTasks = (role: Role) => role !== "viewer";
+
+export const canManageLabels = (role: Role) =>
+  role === "owner" || role === "admin";

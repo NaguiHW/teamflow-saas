@@ -24,6 +24,9 @@ Resource routes are organization-scoped through authenticated membership context
 - List endpoints support bounded page size, filtering, sorting, and search where relevant.
 - Mutations return the created or updated resource and record an audit event when applicable.
 
+The Phase 4 OpenAPI contract is maintained in
+[`phase-4-openapi.yaml`](./phase-4-openapi.yaml).
+
 ## Error shape
 
 ```json
