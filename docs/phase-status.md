@@ -5,7 +5,7 @@ This file mirrors the authoritative phase order and task status in
 
 ## Phase 0 — Scope and initial decisions
 
-Status: Complete, pending review.
+Status: Complete.
 
 Completed:
 
@@ -14,11 +14,11 @@ Completed:
 - API boundary, error format, tenant scoping, and session strategy.
 - Product, domain, authorization, and context diagrams.
 
-Next gate: review the Phase 0 documents before beginning Phase 1.
+Next gate: Phase 1 is complete.
 
 ## Phase 1 — Monorepo and tooling
 
-Status: Complete, pending review.
+Status: Complete.
 
 Completed:
 
@@ -27,11 +27,11 @@ Completed:
 - Strict TypeScript, ESLint, Prettier, Sass, CSS Modules, and shared scripts.
 - Environment examples and initial development documentation.
 
-Next gate: review the folder structure, scripts, and conventions before relying on the database layer.
+Next gate: Phase 2 is complete.
 
 ## Phase 2 — Local development and base infrastructure
 
-Status: Complete, pending required review.
+Status: Complete.
 
 Completed:
 
@@ -40,11 +40,14 @@ Completed:
 - Drizzle configuration, versioned migrations, migration/reset/seed scripts.
 - Local environment, ports, and troubleshooting documentation.
 
-Next gate: review environment-variable security and the local strategy before the authentication phase.
+Next gate: Phase 3 frontend-first product flow is complete.
 
 ## Phase 3 — Frontend-first product flow with mock data
 
-Status: Complete, pending required review.
+Status: Complete.
+
+Historical note: this phase was previously referred to as “Phase 4A”. The
+authoritative name and order are Phase 3.
 
 Scope:
 
@@ -56,11 +59,11 @@ Scope:
 - Verify responsive behavior on mobile, tablet, and desktop viewports.
 - Add component and Playwright tests against the mock API.
 
-Next gate: review UX, the mock API contract, and component structure before Phase 4 authentication.
+Next gate: Phase 4 authentication and multi-tenancy is complete.
 
 ## Phase 4 — Authentication and multi-tenancy
 
-Status: Complete, pending required review.
+Status: Complete.
 
 Completed:
 
@@ -71,7 +74,7 @@ Completed:
 - Resend invitation delivery with hashed, expiring invitation tokens.
 - Authentication and role-policy regression tests.
 
-Next gate: review the security model before relying on protected domain functionality.
+Next gate: Phase 5 core domain work is in progress.
 
 ## Phase 5 — Core domain: projects and tasks
 
@@ -101,6 +104,9 @@ Scope:
 - Consolidate the Phase 3 public and authenticated layouts, dashboard navigation, project pages, and task pages.
 - Replace the approved mock transport with the real API without changing component contracts.
 - Loading, error, empty states, Toastify feedback, accessibility, keyboard navigation, metadata, and SEO.
+- Lucide-based iconography and complete interactive-control states for hover, active, focus-visible, and disabled behavior.
+- Light and dark themes with system preference detection, persisted manual choice, and contrast coverage.
+- Typed English and Spanish internationalization with feature-organized translations and fallback behavior.
 
 Next gate: review UX, accessibility, responsive behavior, and Server/Client Component decisions before Phase 7.
 

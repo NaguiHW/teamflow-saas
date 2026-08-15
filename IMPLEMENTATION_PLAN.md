@@ -28,7 +28,7 @@ This document defines the incremental development of the project. The AI must co
 
 ## Phase 0 — Scope and initial decisions
 
-Status: [x] Completed — pending required review.
+Status: [x] Completed.
 
 ### Objective
 
@@ -53,11 +53,11 @@ Turn the TeamFlow idea into a concrete MVP before writing code.
 
 ### Required review
 
-Stop and request review before creating the monorepo.
+Review completed before creating the monorepo.
 
 ## Phase 1 — Monorepo and tooling
 
-Status: [x] Completed — pending required review.
+Status: [x] Completed.
 
 ### Objective
 
@@ -84,11 +84,11 @@ Create a consistent development base for the frontend, API, and shared packages.
 
 ### Required review
 
-Review the folder structure, scripts, and conventions before adding the database.
+Review completed before adding the database.
 
 ## Phase 2 — Local development and base infrastructure
 
-Status: [x] Completed — pending required review.
+Status: [x] Completed.
 
 ### Objective
 
@@ -113,11 +113,14 @@ Allow any developer to run the project locally with Docker Compose.
 
 ### Required review
 
-Review environment-variable security and the local strategy before implementing authentication.
+Review completed before implementing authentication.
 
 ## Phase 3 — Frontend-first product flow with mock data
 
 Status: [x] Completed — responsive flow reviewed.
+
+Historical note: this frontend-first phase was previously referred to as
+“Phase 4A”. The authoritative name and order are Phase 3.
 
 ### Objective
 
@@ -149,9 +152,11 @@ Build and validate the first TeamFlow experience before connecting authenticatio
 
 ### Required review
 
-Stop and review the UX, mock API contract, and component structure before implementing authentication.
+Review completed before implementing authentication.
 
 ## Phase 4 — Authentication and multi-tenancy
+
+Status: [x] Completed.
 
 ### Objective
 
@@ -178,9 +183,11 @@ Implement secure access and isolation between organizations.
 
 ### Required review
 
-Stop and review the security model before creating business functionality.
+Review completed before creating business functionality.
 
 ## Phase 5 — Core domain: projects and tasks
+
+Status: [~] In progress — Bruno documentation remains pending.
 
 ### Objective
 
@@ -212,6 +219,8 @@ Build TeamFlow's central workflow on top of a stable API.
 Review the API contract, data model, and business rules before building the full dashboard.
 
 ## Phase 6 — Next.js dashboard integration
+
+Status: [ ] Not started.
 
 ### Objective
 
@@ -254,6 +263,8 @@ Review UX, accessibility, and Server/Client Component decisions before adding se
 
 ## Phase 7 — Quality, security, and performance
 
+Status: [ ] Not started.
+
 ### Objective
 
 Raise the MVP to a production-demonstrable level.
@@ -282,6 +293,8 @@ Raise the MVP to a production-demonstrable level.
 Review CI, coverage, and security results before public deployment.
 
 ## Phase 8 — Deployment and public demo
+
+Status: [ ] Not started.
 
 ### Objective
 
@@ -313,6 +326,8 @@ Review the complete demo before starting AWS or infrastructure improvements.
 
 ## Phase 9 — Portfolio and advanced phase
 
+Status: [ ] Not started.
+
 ### Objective
 
 Turn the project into a strong portfolio piece and evaluate advanced improvements.
@@ -340,4 +355,5 @@ Turn the project into a strong portfolio piece and evaluate advanced improvement
 | ---------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | 2026-08-09 | 0     | Created the phased plan                                                                                                                                              | Enable incremental review and reduce risk                                                               | No                                          |
 | 2026-08-09 | 2     | Use Docker Compose with PostgreSQL and Redis; keep migration state in Drizzle and seed only infrastructure metadata                                                  | Provide a reproducible local environment without implementing Phase 4 authentication or tenant entities | No                                          |
-| 2026-08-09 | 3     | Integrate Supabase Auth with HttpOnly sessions, bearer-token API validation, organization membership authorization, Resend invitations, and append-only audit events | Establish secure identity and tenant isolation before business-domain resources                         | Yes — confirmed in `AGENTS.md` and ADR 0004 |
+| 2026-08-09 | 3     | Build the frontend-first product flow with typed mock data, MSW handlers, Bruno requests, and responsive dashboard views                                             | Validate the product UX and API contracts before authentication and the real API                        | No                                          |
+| 2026-08-09 | 4     | Integrate Supabase Auth with HttpOnly sessions, bearer-token API validation, organization membership authorization, Resend invitations, and append-only audit events | Establish secure identity and tenant isolation before business-domain resources                         | Yes — confirmed in `AGENTS.md` and ADR 0004 |
