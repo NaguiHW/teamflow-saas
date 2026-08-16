@@ -1,0 +1,20 @@
+meta {
+  name: List organization audit events
+  type: http
+  seq: 33
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/audit-events
+  body: none
+}
+
+docs {
+  # List organization audit events
+
+  Returns append-only sensitive-action events for an organization.
+  Authentication: authenticated session cookie; requires `owner` or `admin` membership.
+  Tenant scope: results are restricted to `organizationId`.
+  Expected response: `200` with audit event records ordered by creation time.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`.
+}

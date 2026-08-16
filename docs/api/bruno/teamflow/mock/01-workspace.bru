@@ -1,0 +1,23 @@
+meta {
+  name: Mock workspace
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{apiBaseUrl}}/mock-api/workspace
+  body: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Mock workspace
+
+  Returns the typed demo workspace used by the Phase 3 frontend flow.
+  Authentication: none; this request documents the Phase 3 mock REST contract and is development-only.
+  Expected response: `200` with `organization`, `currentUser`, `projects`, `tasks`, and `activity`.
+  Error case: `500` if the mock fixture does not satisfy the shared schema.
+}

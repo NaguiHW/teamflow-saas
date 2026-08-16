@@ -110,7 +110,14 @@ const LoginForm = () => {
             disabled={isSubmitting}
             type="submit"
           >
-            {isSubmitting ? t("submitting") : t("submit")}
+            {isSubmitting ? (
+              <span className={styles.submitPending}>
+                <span className={styles.submitSpinner} aria-hidden="true" />
+                {t("submitting")}
+              </span>
+            ) : (
+              t("submit")
+            )}
           </button>
         </form>
         <Link className={styles.backLink} href="/">

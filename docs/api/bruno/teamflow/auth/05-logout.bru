@@ -1,0 +1,19 @@
+meta {
+  name: Logout
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{apiBaseUrl}}/auth/logout
+  body: none
+}
+
+docs {
+  # Logout
+
+  Revokes the current Supabase session and clears session cookies.
+  Authentication: authenticated session cookie.
+  Expected response: `200` with `authenticated: false`.
+  Error case: `401` `UNAUTHENTICATED` when the session is missing or invalid.
+}

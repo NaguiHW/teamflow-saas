@@ -1,0 +1,31 @@
+meta {
+  name: Create organization invitation
+  type: http
+  seq: 29
+}
+
+post {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/invitations
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "invitee@example.com",
+    "role": "member"
+  }
+}
+
+docs {
+  # Create organization invitation
+
+  Creates a hashed, expiring invitation and sends it with Resend when configured.
+  Authentication: authenticated session cookie; requires `owner` or `admin` membership.
+  Tenant scope: invitation is created for `organizationId`.
+  Expected response: `201` with `invitation` and `emailSent`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `ORGANIZATION_NOT_FOUND`; `422` for invalid input.
+}

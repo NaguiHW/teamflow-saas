@@ -1,0 +1,20 @@
+meta {
+  name: Get organization
+  type: http
+  seq: 27
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}
+  body: none
+}
+
+docs {
+  # Get organization
+
+  Returns an organization accessible to the authenticated user.
+  Authentication: authenticated session cookie; requires any organization membership.
+  Tenant scope: `organizationId` is validated against the authenticated membership.
+  Expected response: `200` with `organization` and the member `role`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `ORGANIZATION_NOT_FOUND`.
+}

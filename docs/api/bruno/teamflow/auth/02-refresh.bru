@@ -1,0 +1,19 @@
+meta {
+  name: Refresh session
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{apiBaseUrl}}/auth/refresh
+  body: none
+}
+
+docs {
+  # Refresh session
+
+  Refreshes the authenticated session using the `teamflow_refresh_token` cookie.
+  Authentication: refresh session cookie; rate limited.
+  Expected response: `200` with `authenticated: true` and refreshed cookies.
+  Error case: `401` `INVALID_SESSION` when the refresh cookie is missing or expired.
+}

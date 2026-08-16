@@ -58,6 +58,15 @@ The web application and API remain separate to make frontend and backend respons
 - Do not rely on `hover` as the only feedback mechanism; touch devices must receive immediate `active` or state-change feedback.
 - Focus indicators must remain visible for keyboard users and meet contrast requirements.
 - Disabled controls must not appear interactive and must not trigger hover or active behavior.
+- Use skeletons for content-shaped loading states when the expected layout is known.
+- Use spinners only for short, localized operations such as button submissions or inline mutations.
+- Use route-level loading views for page or dashboard transitions and long-running data requests.
+- Loading states must preserve the expected layout, communicate progress accessibly, and avoid unnecessary layout shifts.
+- Do not block the entire interface with a spinner when independent content can remain usable.
+- Buttons that trigger asynchronous operations or navigation must be disabled while the operation is pending.
+- Pending buttons must show a localized spinner or progress state without removing their accessible name.
+- Prevent duplicate submissions, repeated mutations, and duplicate navigation while a button operation is pending.
+- Use `aria-busy` or an equivalent accessible status when appropriate, and restore the original button state after success or failure.
 - Declarative styles must live in a separate Sass file. TypeScript may select conditional classes but must not contain style blocks.
 - Component-only types may live next to the component; reusable domain types must live in separate files.
 
@@ -163,8 +172,10 @@ export default TaskCard;
 - Every query must be scoped by `organization_id` and validated on the server.
 - Authorization belongs in the backend; hiding buttons in React is not security.
 - API responses must use a consistent error format.
-- Whenever an endpoint is created or changed, create or update its Bruno request collection under `docs/api/bruno/`.
+- Whenever a backend endpoint is created or changed, create or update its Bruno request collection under `docs/api/bruno/`.
 - Bruno requests must include the method, URL, headers, authentication requirements, example body, expected response, and relevant error cases.
+- Bruno files must cover backend/API endpoints only; do not create Bruno files for frontend routes, components, or client-side interactions.
+- Organize Bruno collections in resource- or domain-based subfolders under `docs/api/bruno/`.
 - Bruno collections must never contain real secrets; use environment variables and provide a safe example environment file.
 - Migrations are versioned; production must never be modified manually.
 - Keep a modular monolith until there is a measurable reason to split services.
@@ -181,6 +192,8 @@ export default TaskCard;
 - Define caching and revalidation boundaries for every query.
 - Never cache organization- or user-specific data without preserving the authorization context.
 - Use `loading.tsx`, `error.tsx`, and empty states in primary routes.
+- Prefer Next.js route-level `loading.tsx` views for navigation and page-level loading states.
+- Loading indicators must expose an appropriate accessible status, and decorative animation must respect `prefers-reduced-motion`.
 - Use `next/image`, metadata, and SEO-friendly public routes.
 - Use `next-intl` or the approved project i18n solution for English and Spanish, including locale-aware routing where applicable.
 - Avoid hydration mismatches when reading theme or locale preferences in Client Components.

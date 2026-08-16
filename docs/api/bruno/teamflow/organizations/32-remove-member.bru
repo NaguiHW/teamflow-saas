@@ -1,0 +1,20 @@
+meta {
+  name: Remove organization member
+  type: http
+  seq: 32
+}
+
+delete {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/members/{{memberId}}
+  body: none
+}
+
+docs {
+  # Remove organization member
+
+  Removes a non-owner member from an organization.
+  Authentication: authenticated session cookie; requires `owner` or `admin` membership.
+  Tenant scope: the member must belong to `organizationId`.
+  Expected response: `200` with `removed: true`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN` when removing the owner; `404` `MEMBER_NOT_FOUND`.
+}

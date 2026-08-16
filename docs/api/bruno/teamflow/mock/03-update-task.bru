@@ -1,0 +1,30 @@
+meta {
+  name: Mock update task status
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{apiBaseUrl}}/mock-api/tasks/{{taskId}}
+  body: json
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "status": "done"
+  }
+}
+
+docs {
+  # Mock update task status
+
+  Updates a task status in the in-memory demo fixture.
+  Authentication: none; this request documents the Phase 3 mock REST contract and is development-only.
+  Expected response: `200` with the updated `task`.
+  Error cases: `404` with `TASK_NOT_FOUND`; `422` for an invalid status.
+}

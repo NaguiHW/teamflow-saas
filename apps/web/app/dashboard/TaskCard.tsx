@@ -1,11 +1,13 @@
 "use client";
 
 import type { Task, TaskStatus } from "@teamflow/types";
+import { useTranslations } from "next-intl";
 import styles from "./dashboard.module.scss";
 
 type TaskCardProps = {
   task: Task;
   onStatusChange: (taskId: string, status: TaskStatus) => void;
+  isPending?: boolean;
 };
 
 const statusLabels: Record<TaskStatus, string> = {
@@ -20,7 +22,12 @@ const labelStyles: Record<string, string> = {
   label_research: styles.labelResearch,
 };
 
-const TaskCard = ({ task, onStatusChange }: TaskCardProps) => {
+const TaskCard = ({
+  task,
+  onStatusChange,
+  isPending = false,
+}: TaskCardProps) => {
+  const t = useTranslations("dashboard");
   const nextStatus: TaskStatus =
     task.status === "todo"
       ? "in_progress"
@@ -37,10 +44,25 @@ const TaskCard = ({ task, onStatusChange }: TaskCardProps) => {
         <button
           className={styles.iconButton}
           type="button"
-          aria-label={`Move ${task.title} to ${statusLabels[nextStatus]}`}
+          aria-label={t("moveTask", {
+            title: task.title,
+            status: t(
+              nextStatus === "todo"
+                ? "todo"
+                : nextStatus === "in_progress"
+                  ? "inProgress"
+                  : "done",
+            ),
+          })}
+          aria-busy={isPending}
+          disabled={isPending}
           onClick={() => onStatusChange(task.id, nextStatus)}
         >
-          →
+          {isPending ? (
+            <span className={styles.buttonSpinner} aria-hidden="true" />
+          ) : (
+            "→"
+          )}
         </button>
       </div>
       <h3>{task.title}</h3>

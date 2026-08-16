@@ -27,6 +27,7 @@ import {
 } from "../../src/lib/teamflow-api";
 import { useLocalePreference } from "../../src/i18n/LocaleProvider";
 import { useTheme } from "../../src/theme/ThemeProvider";
+import DashboardSkeleton from "./DashboardSkeleton";
 import TaskBoard from "./TaskBoard";
 import styles from "./dashboard.module.scss";
 
@@ -42,9 +43,13 @@ const WorkspaceApp = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [pendingTaskId, setPendingTaskId] = useState<string | null>(null);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
+    if (isLoggingOut) return;
+    setIsLoggingOut(true);
     try {
       await logout();
     } finally {
@@ -90,7 +95,7 @@ const WorkspaceApp = () => {
   );
 
   const handleStatusChange = async (taskId: string, status: TaskStatus) => {
-    if (!workspace) return;
+    if (!workspace || isSaving) return;
     const previousTasks = workspace.tasks.items;
     setWorkspace({
       ...workspace,
@@ -102,6 +107,7 @@ const WorkspaceApp = () => {
       },
     });
     setIsSaving(true);
+    setPendingTaskId(taskId);
     try {
       await updateTaskStatus({
         organizationId: workspace.organization.id,
@@ -117,16 +123,12 @@ const WorkspaceApp = () => {
       toast.error(t("taskUpdateFailed"));
     } finally {
       setIsSaving(false);
+      setPendingTaskId(null);
     }
   };
 
   if (isLoading) {
-    return (
-      <main className={styles.statusPage}>
-        <span className={styles.loadingOrb} />
-        {t("loading")}
-      </main>
-    );
+    return <DashboardSkeleton />;
   }
   if (error || !workspace) {
     return (
@@ -198,10 +200,16 @@ const WorkspaceApp = () => {
                 className={styles.logoutButton}
                 type="button"
                 role="menuitem"
+                aria-busy={isLoggingOut}
+                disabled={isLoggingOut}
                 onClick={() => void handleLogout()}
               >
-                <LogOut aria-hidden="true" size={15} />
-                {t("signOut")}
+                {isLoggingOut ? (
+                  <span className={styles.buttonSpinner} aria-hidden="true" />
+                ) : (
+                  <LogOut aria-hidden="true" size={15} />
+                )}
+                {isLoggingOut ? t("signingOut") : t("signOut")}
               </button>
             </div>
           ) : null}
@@ -396,10 +404,11 @@ const WorkspaceApp = () => {
               <TaskBoard
                 tasks={visibleTasks}
                 onStatusChange={handleStatusChange}
+                pendingTaskId={pendingTaskId}
               />
               {isSaving ? (
                 <p className={styles.saveNote} role="status">
-                  Saving your change…
+                  {t("saving")}
                 </p>
               ) : null}
             </div>

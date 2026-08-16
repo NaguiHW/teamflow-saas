@@ -1,7 +1,5 @@
-import styles from "./dashboard.module.scss";
+import DashboardSkeleton from "./DashboardSkeleton";
 
-const DashboardLoading = () => (
-  <main className={styles.statusPage}>Loading workspace…</main>
-);
+const DashboardLoading = () => <DashboardSkeleton />;
 
 export default DashboardLoading;

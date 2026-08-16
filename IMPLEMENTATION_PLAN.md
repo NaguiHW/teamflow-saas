@@ -12,8 +12,10 @@ This document defines the incremental development of the project. The AI must co
 - Keep changes small and easy to review.
 - Update the phase status when work is complete.
 - Determine the active phase from the earliest incomplete exit criteria or review checkpoint. Existing implementation from a later phase does not advance the active phase and must not be extended until the earlier gate is cleared.
-- Whenever an endpoint is created or changed, create or update its corresponding Bruno request under `docs/api/bruno/`.
+- Whenever a backend endpoint is created or changed, create or update its corresponding Bruno request under `docs/api/bruno/`.
 - Bruno requests must document the HTTP method, URL, headers, authentication, request body, successful response, and relevant error responses.
+- Bruno files must cover backend/API endpoints only; do not create Bruno files for frontend routes, components, or client-side interactions.
+- Organize Bruno collections in resource- or domain-based subfolders under `docs/api/bruno/`.
 - Never commit real credentials or secrets to Bruno files; use environment variables or example values.
 - All frontend work must follow a mobile-first responsive approach.
 - Every relevant screen must be verified on mobile, tablet, and desktop viewports.
@@ -84,7 +86,7 @@ Create a consistent development base for the frontend, API, and shared packages.
 
 ### Required review
 
-Review completed before adding the database.
+Review the folder structure, scripts, and conventions before adding the database.
 
 ## Phase 2 — Local development and base infrastructure
 
@@ -113,11 +115,11 @@ Allow any developer to run the project locally with Docker Compose.
 
 ### Required review
 
-Review completed before implementing authentication.
+Review environment-variable security and the local strategy before implementing authentication.
 
 ## Phase 3 — Frontend-first product flow with mock data
 
-Status: [x] Completed — responsive flow reviewed.
+Status: [x] Completed.
 
 Historical note: this frontend-first phase was previously referred to as
 “Phase 4A”. The authoritative name and order are Phase 3.
@@ -131,10 +133,11 @@ Build and validate the first TeamFlow experience before connecting authenticatio
 - [x] Define the frontend information architecture and primary user journey.
 - [x] Create typed fixtures for organizations, projects, tasks, labels, and activity.
 - [x] Add Mock Service Worker (MSW) handlers for the planned REST endpoints.
-- [x] Create initial Bruno requests for the mocked REST endpoints under `docs/api/bruno/`.
+- [x] Create initial Bruno requests for the mocked backend REST endpoints under resource-based subfolders in `docs/api/bruno/`.
 - [x] Build the public home page and authenticated-dashboard shell.
 - [x] Build project and task views using mock responses.
 - [x] Add loading, error, empty, and optimistic-update states.
+- [x] Add skeletons for known content layouts, localized spinners for short operations, and loading views for route-level transitions.
 - [x] Make the main flow responsive and verify mobile, tablet, and desktop layouts.
 - [x] Keep mock data and handlers outside React components.
 - [x] Ensure mock responses follow the shared types and Zod schemas.
@@ -152,7 +155,7 @@ Build and validate the first TeamFlow experience before connecting authenticatio
 
 ### Required review
 
-Review completed before implementing authentication.
+Review completed: UX, mock API contract, and component structure approved before authentication.
 
 ## Phase 4 — Authentication and multi-tenancy
 
@@ -183,11 +186,11 @@ Implement secure access and isolation between organizations.
 
 ### Required review
 
-Review completed before creating business functionality.
+Stop and review the security model before creating business functionality.
 
 ## Phase 5 — Core domain: projects and tasks
 
-Status: [x] Completed — Bruno documentation added; pending required review.
+Status: [x] Completed.
 
 ### Objective
 
@@ -202,7 +205,7 @@ Build TeamFlow's central workflow on top of a stable API.
 - [x] Implement pagination, filtering, and sorting.
 - [x] Define consistent REST errors and responses.
 - [x] Document endpoints with OpenAPI.
-- [x] Create or update the corresponding Bruno request for every endpoint.
+- [x] Create or update the corresponding Bruno request for every backend endpoint, organized by resource under `docs/api/bruno/`.
 - [x] Create domain, integration, and authorization tests.
 
 ### Exit criteria
@@ -216,22 +219,22 @@ Build TeamFlow's central workflow on top of a stable API.
 
 ### Required review
 
-Review the API contract, data model, and business rules before building the full dashboard.
+Review completed: API contract, data model, business rules, and Bruno collection approved before building the full dashboard.
 
 ## Phase 6 — Next.js dashboard integration
 
-Status: Complete.
+Status: [~] In progress.
 
 ### Objective
 
-Integrate and harden the approved Phase 3 product experience against the real API,
-with production-ready accessibility, responsive behavior, theming, and localization.
+Integrate and harden the approved Phase 3 product experience against the real API, with production-ready accessibility, responsive behavior, theming, and localization.
 
 ### Tasks
 
-- [x] Consolidate public and authenticated layouts from the Phase 3 shell.
-- [x] Harden dashboard navigation, project pages, and task pages for the real API.
-- [x] Replace the mock transport with the real API without changing component contracts.
+- [ ] Create public and authenticated layouts.
+- [x] Implement dashboard navigation.
+- [x] Implement project and task pages.
+- [x] Start the dashboard flow with the approved mock API and replace it with the real API without changing component contracts.
 - [x] Use Server Components by default.
 - [x] Use Client Components only for interaction and local state.
 - [x] Implement loading, error, and empty states.
@@ -245,6 +248,8 @@ with production-ready accessibility, responsive behavior, theming, and localizat
 - [x] Add basic accessibility and keyboard navigation.
 - [x] Define and implement `hover`, `active`, `focus-visible`, and `disabled` states for interactive controls.
 - [x] Verify touch-friendly feedback without relying exclusively on `hover`.
+- [x] Disable buttons during asynchronous operations or navigation and show an accessible localized spinner.
+- [x] Prevent duplicate submissions, repeated mutations, and duplicate navigation while operations are pending.
 - [x] Add metadata and SEO for public pages.
 
 ### Exit criteria
@@ -252,6 +257,7 @@ with production-ready accessibility, responsive behavior, theming, and localizat
 - [x] A user can complete the main flow from the interface.
 - [x] No secrets or authorization rules live only in the client.
 - [x] Loading, error, and empty states are covered.
+- [x] Skeletons, spinners, and loading views preserve layout, expose accessible status, and respect reduced-motion preferences.
 - [x] Critical flows have Playwright tests.
 - [x] The interface works on mobile, tablet, and desktop viewports without horizontal scrolling.
 - [x] Light and dark themes meet contrast requirements and are covered by UI tests.

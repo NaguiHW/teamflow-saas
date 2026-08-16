@@ -146,6 +146,13 @@
 .logoutButton:hover {
   background: #e7f0e9;
 }
+.logoutButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.logoutButton:disabled:hover {
+  background: transparent;
+}
 .logoutButton:focus-visible {
   outline: 3px solid #e69b68;
   outline-offset: 2px;
@@ -653,6 +660,131 @@
   animation: spin 0.8s linear infinite;
 }
 
+.skeletonPage {
+  min-height: 100vh;
+  background: #f4f6f4;
+  color: #1f2e2c;
+}
+
+.skeletonTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 5rem;
+  padding: 0 3.25rem;
+  border-bottom: 1px solid #e2e9e3;
+  background: #fbfcfa;
+}
+
+.skeletonContent {
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 3rem 3.25rem;
+}
+
+.skeletonBlock {
+  display: block;
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, #e2ebe4 25%, #f1f5f1 50%, #e2ebe4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+:global([data-theme="dark"]) .skeletonPage {
+  background: #15211f;
+  color: #e6f1eb;
+}
+
+:global([data-theme="dark"]) .skeletonTopbar {
+  border-color: #344b44;
+  background: #1a2926;
+}
+
+:global([data-theme="dark"]) .skeletonBlock {
+  background: linear-gradient(90deg, #263b35 25%, #354d45 50%, #263b35 75%);
+}
+
+.skeletonBrand {
+  width: 5.5rem;
+  height: 1.5rem;
+}
+.skeletonBreadcrumb {
+  width: 10rem;
+  height: 0.75rem;
+}
+.skeletonActions {
+  width: 7rem;
+  height: 2rem;
+}
+.skeletonKicker {
+  width: 8rem;
+  height: 0.65rem;
+}
+.skeletonTitle {
+  width: min(22rem, 70%);
+  height: 2.8rem;
+  margin-top: 0.8rem;
+}
+.skeletonIntro {
+  width: min(25rem, 85%);
+  height: 1rem;
+  margin-top: 0.9rem;
+}
+.skeletonMetrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.skeletonMetric {
+  height: 6rem;
+}
+.skeletonWorkspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.skeletonSection {
+  width: 8rem;
+  height: 1.2rem;
+}
+.skeletonProjects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.skeletonProject {
+  height: 5rem;
+}
+.skeletonSelected {
+  height: 7rem;
+  margin-top: 1.5rem;
+}
+.skeletonBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.skeletonColumn {
+  height: 16rem;
+}
+.skeletonActivity {
+  min-height: 24rem;
+}
+
+.buttonSpinner {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
 :global([data-theme="dark"]) .appShell {
   background: #15211f;
   color: #e6f1eb;
@@ -741,7 +873,31 @@
   }
 }
 
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonBlock,
+  .buttonSpinner,
+  .loadingOrb {
+    animation: none;
+  }
+}
+
 @media (max-width: 960px) {
+  .skeletonContent {
+    padding: 2rem;
+  }
+  .skeletonWorkspace {
+    grid-template-columns: 1fr;
+  }
+  .skeletonActivity {
+    min-height: 8rem;
+  }
+
   .appShell {
     display: grid;
     grid-template-areas:
@@ -811,6 +967,30 @@
     padding: 2rem 0 0;
     border-top: 1px solid #dfe7e1;
     border-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .skeletonTopbar {
+    padding: 0 1rem;
+  }
+
+  .skeletonBreadcrumb {
+    display: none;
+  }
+
+  .skeletonActions {
+    width: 5rem;
+  }
+
+  .skeletonContent {
+    padding: 1.5rem 1rem;
+  }
+
+  .skeletonMetrics,
+  .skeletonProjects,
+  .skeletonBoard {
+    grid-template-columns: 1fr;
   }
 }
 

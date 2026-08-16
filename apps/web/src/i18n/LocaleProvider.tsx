@@ -33,7 +33,11 @@ const LocaleProvider = ({
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>
-      <NextIntlClientProvider locale={locale} messages={messages[locale]}>
+      <NextIntlClientProvider
+        locale={locale}
+        messages={messages[locale]}
+        timeZone="America/Panama"
+      >
         {children}
       </NextIntlClientProvider>
     </LocaleContext.Provider>

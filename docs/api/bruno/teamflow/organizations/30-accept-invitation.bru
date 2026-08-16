@@ -1,0 +1,29 @@
+meta {
+  name: Accept organization invitation
+  type: http
+  seq: 30
+}
+
+post {
+  url: {{apiBaseUrl}}/invitations/accept
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "token": "paste-invitation-token"
+  }
+}
+
+docs {
+  # Accept organization invitation
+
+  Accepts a pending invitation for the authenticated user's email address.
+  Authentication: authenticated session cookie; rate limited.
+  Expected response: `200` with `organizationId` and assigned `role`.
+  Error cases: `401` `UNAUTHENTICATED`; `404` `INVITATION_NOT_FOUND` for an invalid, expired, or mismatched token; `422` for invalid input.
+}

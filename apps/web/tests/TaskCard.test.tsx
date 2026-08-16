@@ -1,8 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { createElement } from "react";
+import { NextIntlClientProvider } from "next-intl";
 import { describe, expect, it, vi } from "vitest";
 import type { Task } from "@teamflow/types";
 import TaskCard from "../app/dashboard/TaskCard";
+import { messages } from "../src/i18n/messages";
 
 const task: Task = {
   id: "task_demo",
@@ -19,7 +20,11 @@ const task: Task = {
 describe("TaskCard", () => {
   it("renders task details and advances status through its action", () => {
     const onStatusChange = vi.fn();
-    render(createElement(TaskCard, { task, onStatusChange }));
+    render(
+      <NextIntlClientProvider locale="en" messages={messages.en}>
+        <TaskCard task={task} onStatusChange={onStatusChange} />
+      </NextIntlClientProvider>,
+    );
 
     expect(
       screen.getByRole("heading", { name: task.title }),

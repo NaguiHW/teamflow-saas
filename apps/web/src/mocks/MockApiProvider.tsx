@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type MockApiProviderProps = Readonly<{ children: React.ReactNode }>;
 
@@ -9,17 +10,13 @@ const isMockEnabled =
   process.env.NEXT_PUBLIC_MOCK_API === "true";
 
 const MockApiProvider = ({ children }: MockApiProviderProps) => {
+  const t = useTranslations("dashboard");
   const [ready, setReady] = useState(!isMockEnabled);
 
   useEffect(() => {
     if (!isMockEnabled) return;
     let active = true;
     let stopWorker: (() => void) | undefined;
-    const fallbackTimeout = window.setTimeout(() => {
-      if (active) {
-        setReady(true);
-      }
-    }, 2_000);
 
     void import("./browser")
       .then(({ worker }) => {
@@ -36,13 +33,17 @@ const MockApiProvider = ({ children }: MockApiProviderProps) => {
 
     return () => {
       active = false;
-      window.clearTimeout(fallbackTimeout);
       stopWorker?.();
     };
   }, []);
 
   if (!isMockEnabled) return <>{children}</>;
-  if (!ready) return <div aria-live="polite">Starting the demo workspace…</div>;
+  if (!ready)
+    return (
+      <div aria-live="polite" role="status">
+        {t("startingDemo")}
+      </div>
+    );
   return <>{children}</>;
 };
 

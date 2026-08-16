@@ -78,7 +78,7 @@ Next gate: Phase 5 core domain work is in progress.
 
 ## Phase 5 — Core domain: projects and tasks
 
-Status: Complete, pending required review.
+Status: Complete.
 
 Completed:
 
@@ -88,12 +88,13 @@ Completed:
 - Role-aware project, task, label, and comment authorization.
 - Versioned Drizzle migration and indexes for tenant-aware queries.
 - Initial OpenAPI contract and API regression tests.
+- Bruno requests for every backend endpoint, organized by resource.
 
-Next gate: review the API contract, data model, business rules, and Bruno collection before Phase 6.
+Next gate: Phase 6 dashboard integration is ready to begin.
 
 ## Phase 6 — Next.js dashboard integration
 
-Status: Complete.
+Status: In progress.
 
 Scope:
 
@@ -104,7 +105,7 @@ Scope:
 - Light and dark themes with system preference detection, persisted manual choice, and contrast coverage.
 - Typed English and Spanish internationalization with feature-organized translations and fallback behavior.
 
-Next gate: Phase 7 quality, security, and performance is ready to begin.
+Next gate: complete the authenticated/public layout review before Phase 7.
 
 ## Phase 7 — Quality, security, and performance
 

@@ -1,0 +1,31 @@
+meta {
+  name: Register
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{apiBaseUrl}}/auth/register
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "{{email}}",
+    "password": "{{password}}",
+    "displayName": "Maya Chen"
+  }
+}
+
+docs {
+  # Register
+
+  Creates a Supabase Auth user and an application profile.
+  Authentication: none; rate limited.
+  Expected response: `201` with `user` and `authenticated`.
+  Error cases: `400` `REGISTRATION_FAILED`; `422` for invalid credentials.
+}

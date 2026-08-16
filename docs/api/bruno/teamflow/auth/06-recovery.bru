@@ -1,0 +1,29 @@
+meta {
+  name: Request account recovery
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{apiBaseUrl}}/auth/recovery
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "{{email}}"
+  }
+}
+
+docs {
+  # Request account recovery
+
+  Requests a password recovery email through Supabase Auth.
+  Authentication: none; rate limited.
+  Expected response: `200` with `accepted: true`.
+  Error case: `422` for an invalid email address.
+}
