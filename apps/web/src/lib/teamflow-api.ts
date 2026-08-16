@@ -23,7 +23,11 @@ export class ApiRequestError extends Error {
 
 const isMockEnabled = process.env.NEXT_PUBLIC_MOCK_API === "true";
 
-const requestJson = async <T>(path: string, init?: RequestInit) => {
+const requestJson = async <T>(
+  path: string,
+  init?: RequestInit,
+  allowRefresh = true,
+): Promise<T> => {
   const response = await fetch(`/api/teamflow${path}`, {
     ...init,
     credentials: "include",
@@ -32,6 +36,19 @@ const requestJson = async <T>(path: string, init?: RequestInit) => {
       ...init?.headers,
     },
   });
+  if (
+    response.status === 401 &&
+    allowRefresh &&
+    path !== "/auth/login" &&
+    path !== "/auth/refresh"
+  ) {
+    const refreshResponse = await fetch("/api/teamflow/auth/refresh", {
+      method: "POST",
+      credentials: "include",
+      headers: { Accept: "application/json" },
+    });
+    if (refreshResponse.ok) return requestJson<T>(path, init, false);
+  }
   if (!response.ok) {
     const body = (await response.json().catch(() => ({}))) as ApiErrorBody;
     throw new ApiRequestError(
@@ -159,8 +176,6 @@ export const login = (input: { email: string; password: string }) =>
 export const getCurrentUser = () => requestJson<{ user: AuthUser }>("/auth/me");
 
 export const logout = () =>
-  isMockEnabled
-    ? Promise.resolve()
-    : requestJson<{ authenticated: false }>("/auth/logout", {
-        method: "POST",
-      });
+  requestJson<{ authenticated: false }>("/auth/logout", {
+    method: "POST",
+  });

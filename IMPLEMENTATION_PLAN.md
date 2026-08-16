@@ -269,7 +269,7 @@ Review UX, accessibility, and Server/Client Component decisions before adding se
 
 ## Phase 7 — Quality, security, and performance
 
-Status: [ ] Not started.
+Status: [~] In progress.
 
 ### Objective
 
@@ -277,21 +277,21 @@ Raise the MVP to a production-demonstrable level.
 
 ### Tasks
 
-- [ ] Configure GitHub Actions for lint, typecheck, tests, and build.
-- [ ] Configure coverage thresholds for critical code.
+- [x] Configure GitHub Actions for lint, typecheck, tests, and build.
+- [x] Configure coverage thresholds for critical code.
 - [ ] Add E2E tests for login, isolation, projects, and tasks.
-- [ ] Add rate limiting.
-- [ ] Review validation, authorization, and error exposure.
-- [ ] Review N+1 queries and indexes.
-- [ ] Add Sentry or OpenTelemetry.
-- [ ] Add structured logs and correlation IDs.
-- [ ] Run a dependency vulnerability audit.
+- [x] Add rate limiting.
+- [x] Review validation, authorization, and error exposure.
+- [x] Review N+1 queries and indexes.
+- [x] Add Sentry or OpenTelemetry.
+- [x] Add structured logs and correlation IDs.
+- [x] Run a dependency vulnerability audit.
 
 ### Exit criteria
 
 - [ ] CI fails on quality or critical-test errors.
-- [ ] Main security risks are documented.
-- [ ] Basic API metrics are available.
+- [x] Main security risks are documented.
+- [x] Basic API metrics are available.
 - [ ] Main-query performance has been verified.
 
 ### Required review

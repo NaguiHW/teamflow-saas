@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@fastify/cookie": "^11.1.2",
+    "@sentry/node": "^10.70.0",
     "@supabase/supabase-js": "^2.112.2",
     "@teamflow/types": "workspace:*",
     "dotenv": "^17.4.2",

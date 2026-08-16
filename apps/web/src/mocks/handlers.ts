@@ -9,10 +9,58 @@ import {
 
 const tasks = [...demoTasks];
 
+const demoUser = {
+  id: "user_maya",
+  email: "maya@northstar.example",
+  displayName: "Maya Chen",
+};
+
+let isAuthenticated = false;
+
 const getProject = (projectId: string) =>
   demoProjects.find((project) => project.id === projectId);
 
 export const handlers = [
+  http.post("*/auth/login", async ({ request }) => {
+    const input = (await request.json()) as {
+      email?: string;
+      password?: string;
+    };
+
+    if (input.email !== demoUser.email || input.password !== "demo-password") {
+      return HttpResponse.json(
+        {
+          error: {
+            code: "INVALID_CREDENTIALS",
+            message: "Invalid credentials.",
+          },
+        },
+        { status: 401 },
+      );
+    }
+
+    isAuthenticated = true;
+    return HttpResponse.json({ user: demoUser });
+  }),
+  http.get("*/auth/me", () => {
+    if (!isAuthenticated) {
+      return HttpResponse.json(
+        {
+          error: {
+            code: "UNAUTHENTICATED",
+            message: "Authentication required.",
+          },
+        },
+        { status: 401 },
+      );
+    }
+
+    return HttpResponse.json({ user: demoUser });
+  }),
+  http.post("*/auth/logout", () => {
+    isAuthenticated = false;
+    return HttpResponse.json({ authenticated: false });
+  }),
   http.get("*/mock-api/workspace", () => {
     const response = {
       organization: demoOrganization,
