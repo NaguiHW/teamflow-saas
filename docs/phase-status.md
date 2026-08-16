@@ -109,9 +109,9 @@ Next gate: complete the authenticated/public layout review before Phase 7.
 
 ## Phase 7 — Quality, security, and performance
 
-Status: Not started.
+Status: In progress.
 
-Scope: CI, coverage thresholds, E2E tests, rate limiting, security review, observability, structured logs, and dependency auditing.
+Scope: CI, coverage thresholds, authenticated E2E tests, rate limiting, security review, observability, structured logs, dependency auditing, and query performance verification.
 
 Next gate: review CI, coverage, and security results before Phase 8.
 
