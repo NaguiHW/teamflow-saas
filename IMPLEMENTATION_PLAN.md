@@ -220,7 +220,7 @@ Review the API contract, data model, and business rules before building the full
 
 ## Phase 6 — Next.js dashboard integration
 
-Status: [~] In progress.
+Status: Complete.
 
 ### Objective
 
@@ -230,7 +230,7 @@ with production-ready accessibility, responsive behavior, theming, and localizat
 ### Tasks
 
 - [x] Consolidate public and authenticated layouts from the Phase 3 shell.
-- [ ] Harden dashboard navigation, project pages, and task pages for the real API.
+- [x] Harden dashboard navigation, project pages, and task pages for the real API.
 - [x] Replace the mock transport with the real API without changing component contracts.
 - [x] Use Server Components by default.
 - [x] Use Client Components only for interaction and local state.
@@ -249,13 +249,13 @@ with production-ready accessibility, responsive behavior, theming, and localizat
 
 ### Exit criteria
 
-- [ ] A user can complete the main flow from the interface.
-- [ ] No secrets or authorization rules live only in the client.
-- [ ] Loading, error, and empty states are covered.
-- [ ] Critical flows have Playwright tests.
-- [ ] The interface works on mobile, tablet, and desktop viewports without horizontal scrolling.
-- [ ] Light and dark themes meet contrast requirements and are covered by UI tests.
-- [ ] Primary flows render correctly in English and Spanish.
+- [x] A user can complete the main flow from the interface.
+- [x] No secrets or authorization rules live only in the client.
+- [x] Loading, error, and empty states are covered.
+- [x] Critical flows have Playwright tests.
+- [x] The interface works on mobile, tablet, and desktop viewports without horizontal scrolling.
+- [x] Light and dark themes meet contrast requirements and are covered by UI tests.
+- [x] Primary flows render correctly in English and Spanish.
 
 ### Required review
 

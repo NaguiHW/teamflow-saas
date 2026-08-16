@@ -93,7 +93,7 @@ Next gate: review the API contract, data model, business rules, and Bruno collec
 
 ## Phase 6 — Next.js dashboard integration
 
-Status: In progress.
+Status: Complete.
 
 Scope:
 
@@ -104,7 +104,7 @@ Scope:
 - Light and dark themes with system preference detection, persisted manual choice, and contrast coverage.
 - Typed English and Spanish internationalization with feature-organized translations and fallback behavior.
 
-Next gate: review UX, accessibility, responsive behavior, and Server/Client Component decisions before Phase 7.
+Next gate: Phase 7 quality, security, and performance is ready to begin.
 
 ## Phase 7 — Quality, security, and performance
 
