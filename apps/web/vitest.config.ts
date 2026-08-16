@@ -8,5 +8,16 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./tests/setup.ts"],
     css: true,
+    coverage: {
+      provider: "v8",
+      include: ["app/dashboard/TaskCard.tsx"],
+      reporter: ["text", "json-summary"],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        statements: 80,
+        branches: 70,
+      },
+    },
   },
 });

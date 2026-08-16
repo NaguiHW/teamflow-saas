@@ -1,0 +1,19 @@
+meta {
+  name: API metrics
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{apiBaseUrl}}/health/metrics
+  body: none
+}
+
+docs {
+  # API metrics
+
+  Returns aggregate in-memory request counters for operational monitoring.
+  Authentication: no application credentials; expose this endpoint only through a private monitoring network in production.
+  Expected response: `200` with request totals, error totals, duration totals, and route aggregates.
+  Security note: the response contains no request bodies, tokens, emails, or organization identifiers.
+}

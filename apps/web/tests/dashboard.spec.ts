@@ -4,7 +4,7 @@ test.describe("mock workspace flow", () => {
   test("lets a user explore projects and move a task", async ({ page }) => {
     await page.goto("/dashboard");
     await expect(
-      page.getByRole("heading", { name: "Good morning, Maya." }),
+      page.getByRole("heading", { name: "Good morning, Maya Chen." }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: "Website launch" }),
@@ -25,7 +25,7 @@ test.describe("mock workspace flow", () => {
   test("keeps the workspace usable on a mobile viewport", async ({ page }) => {
     await page.goto("/dashboard");
     await expect(
-      page.getByRole("heading", { name: "Good morning, Maya." }),
+      page.getByRole("heading", { name: "Good morning, Maya Chen." }),
     ).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
