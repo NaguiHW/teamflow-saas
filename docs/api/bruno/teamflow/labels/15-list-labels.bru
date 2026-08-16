@@ -1,0 +1,19 @@
+meta {
+  name: List organization labels
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/labels?page=1&pageSize=20
+  body: none
+}
+
+
+docs {
+  # List organization labels
+
+  Authentication: authenticated session cookie; requires any organization membership.
+  Expected response: `200` with `items` and `pagination`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `422` for invalid pagination.
+}

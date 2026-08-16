@@ -1,0 +1,19 @@
+meta {
+  name: Current user
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{apiBaseUrl}}/auth/me
+  body: none
+}
+
+
+docs {
+  # Current user
+
+  Returns the authenticated Supabase user.
+  Expected response: `200` with `user`.
+  Error case: `401` when the session is missing or invalid.
+}

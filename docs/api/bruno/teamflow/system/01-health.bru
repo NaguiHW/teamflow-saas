@@ -1,0 +1,17 @@
+meta {
+  name: API health
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{apiBaseUrl}}/health
+  body: none
+}
+
+docs {
+  # API health
+
+  Returns the Fastify API liveness status.
+  Expected response: `200` with `status: ok`.
+}

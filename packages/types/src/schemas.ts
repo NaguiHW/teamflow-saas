@@ -59,4 +59,12 @@ export const workspaceResponseSchema = z.object({
   projects: z.array(projectSchema),
   tasks: z.object({ items: z.array(taskSchema), pagination: paginationSchema }),
   activity: z.array(activityEventSchema),
+  currentUser: z
+    .object({
+      id: z.string(),
+      email: z.string().email(),
+      displayName: z.string().nullable().optional(),
+      role: z.enum(["owner", "admin", "member", "viewer"]).optional(),
+    })
+    .optional(),
 });

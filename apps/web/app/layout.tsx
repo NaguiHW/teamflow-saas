@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import "react-toastify/dist/ReactToastify.css";
 import MockApiProvider from "../src/mocks/MockApiProvider";
+import LocaleProvider from "../src/i18n/LocaleProvider";
+import ThemeProvider from "../src/theme/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "TeamFlow",
@@ -11,7 +13,11 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
   <html lang="en">
     <body>
-      <MockApiProvider>{children}</MockApiProvider>
+      <ThemeProvider>
+        <LocaleProvider>
+          <MockApiProvider>{children}</MockApiProvider>
+        </LocaleProvider>
+      </ThemeProvider>
     </body>
   </html>
 );

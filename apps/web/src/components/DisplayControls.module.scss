@@ -1,0 +1,57 @@
+.controls {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--color-card) 92%, transparent);
+  box-shadow: 0 0.75rem 2rem rgb(31 65 59 / 16%);
+  backdrop-filter: blur(0.7rem);
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.6rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.control:hover {
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-heading);
+}
+
+.control:active {
+  transform: translateY(1px);
+}
+
+.control:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .controls {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .control span {
+    display: none;
+  }
+}

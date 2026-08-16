@@ -3,20 +3,21 @@
   display: grid;
   place-items: center;
   padding: 2rem;
+  background: var(--color-page);
 }
 
 .hero {
   width: min(100%, 46rem);
   padding: 4rem;
-  border: 1px solid #dbe4ee;
+  border: 1px solid var(--color-border);
   border-radius: 1.5rem;
-  background: #ffffff;
+  background: var(--color-card);
   box-shadow: 0 1.5rem 4rem rgb(31 52 73 / 10%);
 }
 
 .eyebrow {
   margin: 0 0 1rem;
-  color: #287271;
+  color: var(--color-accent-dark);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -26,7 +27,7 @@
 .hero h1 {
   max-width: 10ch;
   margin: 0;
-  color: #14213d;
+  color: var(--color-heading);
   font-size: clamp(3rem, 10vw, 6rem);
   line-height: 0.95;
   letter-spacing: -0.07em;
@@ -35,7 +36,7 @@
 .description {
   max-width: 34rem;
   margin: 1.5rem 0 2rem;
-  color: #536273;
+  color: var(--color-muted);
   font-size: 1.15rem;
   line-height: 1.6;
 }
@@ -45,8 +46,24 @@
   text-decoration: none;
 }
 
+.heroLink + .heroLink {
+  margin-left: 0.75rem;
+}
+
 .statuses {
   margin: 1.5rem 0 0;
-  color: #738096;
+  color: var(--color-muted);
   font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .heroLink {
+    display: block;
+    width: 100%;
+  }
+
+  .heroLink + .heroLink {
+    margin-top: 0.75rem;
+    margin-left: 0;
+  }
 }

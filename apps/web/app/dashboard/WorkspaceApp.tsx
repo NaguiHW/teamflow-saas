@@ -2,33 +2,80 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import {
+  ArrowUpRight,
+  Bell,
+  Check,
+  ChevronDown,
+  Circle,
+  Languages,
+  LogOut,
+  MoreHorizontal,
+  Moon,
+  Plus,
+  Sun,
+} from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
 import type { Project, TaskStatus, WorkspaceResponse } from "@teamflow/types";
+import {
+  ApiRequestError,
+  loadWorkspace,
+  logout,
+  updateTaskStatus,
+} from "../../src/lib/teamflow-api";
+import { useLocalePreference } from "../../src/i18n/LocaleProvider";
+import { useTheme } from "../../src/theme/ThemeProvider";
 import TaskBoard from "./TaskBoard";
 import styles from "./dashboard.module.scss";
 
 const WorkspaceApp = () => {
+  const t = useTranslations("dashboard");
+  const common = useTranslations("common");
+  const locale = useLocale();
+  const router = useRouter();
+  const { locale: selectedLocale, setLocale } = useLocalePreference();
+  const { theme, toggleTheme } = useTheme();
   const [workspace, setWorkspace] = useState<WorkspaceResponse | null>(null);
-  const [selectedProjectId, setSelectedProjectId] = useState("project_launch");
+  const [selectedProjectId, setSelectedProjectId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      router.push("/login");
+      router.refresh();
+    }
+  };
 
   useEffect(() => {
-    const loadWorkspace = async () => {
+    const loadWorkspaceData = async () => {
       try {
-        const response = await fetch("/mock-api/workspace");
-        if (!response.ok) throw new Error("Workspace could not be loaded.");
-        setWorkspace((await response.json()) as WorkspaceResponse);
-      } catch {
+        const nextWorkspace = await loadWorkspace();
+        setWorkspace(nextWorkspace);
+        setSelectedProjectId(
+          (currentProjectId) =>
+            currentProjectId || nextWorkspace.projects[0]?.id || "",
+        );
+      } catch (requestError) {
         setError(
-          "The demo workspace could not load. Check that mock mode is enabled.",
+          requestError instanceof ApiRequestError && requestError.status === 401
+            ? t("loginRequired")
+            : requestError instanceof ApiRequestError &&
+                requestError.code === "NO_ORGANIZATION"
+              ? t("noOrganization")
+              : t("unavailable"),
         );
       } finally {
         setIsLoading(false);
       }
     };
-    void loadWorkspace();
+    void loadWorkspaceData();
   }, []);
 
   const selectedProject = workspace?.projects.find(
@@ -56,19 +103,18 @@ const WorkspaceApp = () => {
     });
     setIsSaving(true);
     try {
-      const response = await fetch(`/mock-api/tasks/${taskId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status }),
+      await updateTaskStatus({
+        organizationId: workspace.organization.id,
+        taskId,
+        status,
       });
-      if (!response.ok) throw new Error("Task update failed.");
-      toast.success("Task status updated");
+      toast.success(t("taskUpdated"));
     } catch {
       setWorkspace({
         ...workspace,
         tasks: { ...workspace.tasks, items: previousTasks },
       });
-      toast.error("We could not update that task");
+      toast.error(t("taskUpdateFailed"));
     } finally {
       setIsSaving(false);
     }
@@ -78,7 +124,7 @@ const WorkspaceApp = () => {
     return (
       <main className={styles.statusPage}>
         <span className={styles.loadingOrb} />
-        Loading your workspace…
+        {t("loading")}
       </main>
     );
   }
@@ -86,10 +132,10 @@ const WorkspaceApp = () => {
     return (
       <main className={styles.statusPage}>
         <div>
-          <p className={styles.kicker}>Demo unavailable</p>
+          <p className={styles.kicker}>{t("unavailable")}</p>
           <h1>{error ?? "Something went wrong."}</h1>
           <Link href="/" className={styles.textLink}>
-            Back to home
+            {t("backHome")}
           </Link>
         </div>
       </main>
@@ -106,30 +152,59 @@ const WorkspaceApp = () => {
           <span className={styles.workspaceAvatar}>NS</span>
           <span>
             <strong>{workspace.organization.name}</strong>
-            <small>{workspace.organization.plan} plan</small>
+            <small>
+              {t("workspacePlan", { plan: workspace.organization.plan })}
+            </small>
           </span>
-          <span className={styles.chevron}>⌄</span>
+          <ChevronDown
+            className={styles.chevron}
+            aria-hidden="true"
+            size={16}
+          />
         </div>
         <nav className={styles.nav} aria-label="Workspace navigation">
           <a className={styles.navItemActive} href="#overview">
-            Overview
+            {t("overview")}
           </a>
           <a className={styles.navItem} href="#projects">
-            Projects
+            {t("projects")}
           </a>
           <a className={styles.navItem} href="#activity">
-            Activity
+            {t("activity")}
           </a>
         </nav>
         <div className={styles.sidebarFooter}>
           <span className={styles.userAvatar}>MC</span>
           <span>
-            <strong>Maya Chen</strong>
-            <small>Workspace owner</small>
+            <strong>
+              {workspace.currentUser?.displayName ??
+                workspace.currentUser?.email ??
+                "Team member"}
+            </strong>
+            <small>{t("workspaceOwner")}</small>
           </span>
-          <button className={styles.iconButton} aria-label="Open profile menu">
-            ···
+          <button
+            className={styles.iconButton}
+            type="button"
+            aria-label="Open profile menu"
+            aria-expanded={isProfileMenuOpen}
+            onClick={() => setIsProfileMenuOpen((isOpen) => !isOpen)}
+          >
+            <MoreHorizontal aria-hidden="true" size={18} />
           </button>
+          {isProfileMenuOpen ? (
+            <div className={styles.profileMenu} role="menu">
+              <button
+                className={styles.logoutButton}
+                type="button"
+                role="menuitem"
+                onClick={() => void handleLogout()}
+              >
+                <LogOut aria-hidden="true" size={15} />
+                {t("signOut")}
+              </button>
+            </div>
+          ) : null}
         </div>
       </aside>
       <main className={styles.mainContent} id="overview">
@@ -139,26 +214,59 @@ const WorkspaceApp = () => {
           </Link>
           <div>
             <p className={styles.breadcrumb}>
-              Northstar Studio <span>/</span> Overview
+              {workspace.organization.name} <span>/</span> {t("overview")}
             </p>
             <p className={styles.demoTag}>
-              MOCK WORKSPACE · No real data is changed
+              {process.env.NEXT_PUBLIC_MOCK_API === "true"
+                ? t("mockNotice")
+                : "LIVE WORKSPACE"}
             </p>
           </div>
-          <button
-            className={styles.avatarButton}
-            type="button"
-            aria-label="Open notifications"
-          >
-            ✦<span>2</span>
-          </button>
+          <div className={styles.topbarActions}>
+            <button
+              className={styles.iconButton}
+              type="button"
+              aria-label={common("switchTheme")}
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? (
+                <Sun aria-hidden="true" size={17} />
+              ) : (
+                <Moon aria-hidden="true" size={17} />
+              )}
+            </button>
+            <button
+              className={styles.iconButton}
+              type="button"
+              aria-label={common("switchLanguage")}
+              onClick={() => setLocale(selectedLocale === "en" ? "es" : "en")}
+            >
+              <Languages aria-hidden="true" size={17} />
+            </button>
+            <button
+              className={styles.avatarButton}
+              type="button"
+              aria-label="Open notifications"
+            >
+              <Bell aria-hidden="true" size={19} />
+              <span>2</span>
+            </button>
+          </div>
         </header>
         <div className={styles.contentWrap}>
           <section className={styles.welcome}>
             <div>
-              <p className={styles.kicker}>Tuesday, August 18, 2026</p>
-              <h1>Good morning, Maya.</h1>
-              <p>Here’s the pulse of your team’s work today.</p>
+              <p className={styles.kicker}>
+                {new Intl.DateTimeFormat(locale, { dateStyle: "full" }).format(
+                  new Date(),
+                )}
+              </p>
+              <h1>
+                {t("goodMorning", {
+                  name: workspace.currentUser?.displayName ?? "Team",
+                })}
+              </h1>
+              <p>{t("teamPulse")}</p>
             </div>
             <button
               className={styles.primaryButton}
@@ -169,12 +277,15 @@ const WorkspaceApp = () => {
                 )
               }
             >
-              + New project
+              <Plus aria-hidden="true" size={16} />{" "}
+              {t("newProject").replace("+ ", "")}
             </button>
           </section>
           <section className={styles.metrics} aria-label="Workspace summary">
             <div className={styles.metricCard}>
-              <span className={styles.metricIcon}>◌</span>
+              <span className={styles.metricIcon}>
+                <Circle aria-hidden="true" size={18} />
+              </span>
               <div>
                 <strong>
                   {
@@ -183,12 +294,14 @@ const WorkspaceApp = () => {
                     ).length
                   }
                 </strong>
-                <span>Active projects</span>
+                <span>{t("activeProjects")}</span>
               </div>
-              <small>+1 this month</small>
+              <small>{t("thisMonth")}</small>
             </div>
             <div className={styles.metricCard}>
-              <span className={styles.metricIcon}>↗</span>
+              <span className={styles.metricIcon}>
+                <ArrowUpRight aria-hidden="true" size={18} />
+              </span>
               <div>
                 <strong>
                   {
@@ -197,12 +310,14 @@ const WorkspaceApp = () => {
                     ).length
                   }
                 </strong>
-                <span>In progress</span>
+                <span>{t("inProgress")}</span>
               </div>
-              <small>Across your team</small>
+              <small>{t("acrossTeam")}</small>
             </div>
             <div className={styles.metricCard}>
-              <span className={styles.metricIcon}>✓</span>
+              <span className={styles.metricIcon}>
+                <Check aria-hidden="true" size={18} />
+              </span>
               <div>
                 <strong>
                   {
@@ -211,9 +326,9 @@ const WorkspaceApp = () => {
                     ).length
                   }
                 </strong>
-                <span>Completed this week</span>
+                <span>{t("completedWeek")}</span>
               </div>
-              <small>Looking good</small>
+              <small>{t("lookingGood")}</small>
             </div>
           </section>
           <section className={styles.workspaceGrid} id="projects">
@@ -230,7 +345,7 @@ const WorkspaceApp = () => {
                     toast.info("Project creation is mocked for now.")
                   }
                 >
-                  View all →
+                  {t("viewAll")}
                 </button>
               </div>
               <div className={styles.projectRail}>
@@ -257,20 +372,24 @@ const WorkspaceApp = () => {
                           done
                         </small>
                       </span>
-                      <span className={styles.projectArrow}>↗</span>
+                      <span className={styles.projectArrow}>
+                        <ArrowUpRight aria-hidden="true" size={16} />
+                      </span>
                     </button>
                   ))}
               </div>
               {selectedProject ? (
                 <div className={styles.selectedProject}>
                   <div>
-                    <p className={styles.kicker}>Selected project</p>
+                    <p className={styles.kicker}>{t("selectedProject")}</p>
                     <h2>{selectedProject.name}</h2>
                     <p>{selectedProject.description}</p>
                   </div>
                   <span className={styles.progressPill}>
-                    {selectedProject.completedTaskCount} of{" "}
-                    {selectedProject.taskCount} complete
+                    {t("complete", {
+                      completed: selectedProject.completedTaskCount,
+                      total: selectedProject.taskCount,
+                    })}
                   </span>
                 </div>
               ) : null}
@@ -288,14 +407,14 @@ const WorkspaceApp = () => {
               <div className={styles.sectionHeading}>
                 <div>
                   <p className={styles.kicker}>Team pulse</p>
-                  <h2>Recent activity</h2>
+                  <h2>{t("recentActivity")}</h2>
                 </div>
                 <button
                   className={styles.moreButton}
                   type="button"
-                  aria-label="More activity options"
+                  aria-label={t("moreActivity")}
                 >
-                  ···
+                  <MoreHorizontal aria-hidden="true" size={18} />
                 </button>
               </div>
               <div className={styles.activityList}>
@@ -322,7 +441,7 @@ const WorkspaceApp = () => {
                   toast.info("The full activity history is coming soon.")
                 }
               >
-                View activity history →
+                {t("activityHistory")}
               </button>
             </aside>
           </section>

@@ -1,0 +1,19 @@
+meta {
+  name: List organizations
+  type: http
+  seq: 25
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations
+  body: none
+}
+
+
+docs {
+  # List organizations
+
+  Returns organizations where the authenticated user is a member.
+  Expected response: `200` with organization memberships.
+  Error case: `401` when the session is missing or invalid.
+}

@@ -93,7 +93,7 @@ Next gate: review the API contract, data model, business rules, and Bruno collec
 
 ## Phase 6 — Next.js dashboard integration
 
-Status: Not started.
+Status: In progress.
 
 Scope:
 

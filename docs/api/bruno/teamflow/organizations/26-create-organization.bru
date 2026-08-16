@@ -1,0 +1,29 @@
+meta {
+  name: Create organization
+  type: http
+  seq: 26
+}
+
+post {
+  url: {{apiBaseUrl}}/organizations
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Northstar Studio",
+    "slug": "northstar-studio"
+  }
+}
+
+docs {
+  # Create organization
+
+  Creates an organization and makes the authenticated user its owner.
+  Expected response: `201` with `organization` and `role: owner`.
+  Error cases: `401` when unauthenticated; `422` for invalid input.
+}

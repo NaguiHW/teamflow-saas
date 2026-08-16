@@ -1,0 +1,18 @@
+meta {
+  name: API dependency health
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{apiBaseUrl}}/health/dependencies
+  body: none
+}
+
+docs {
+  # API dependency health
+
+  Verifies PostgreSQL and Redis readiness.
+  Expected response: `200` with `status: ok`.
+  Error case: `503` when a dependency is unavailable.
+}

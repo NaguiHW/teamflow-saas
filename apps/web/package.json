@@ -14,7 +14,9 @@
   "dependencies": {
     "@teamflow/types": "workspace:*",
     "@teamflow/ui": "workspace:*",
+    "lucide-react": "^1.31.0",
     "next": "^15.5.2",
+    "next-intl": "^4.13.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-toastify": "^11.1.0",

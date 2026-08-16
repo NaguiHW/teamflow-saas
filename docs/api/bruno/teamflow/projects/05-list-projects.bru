@@ -1,0 +1,20 @@
+meta {
+  name: List organization projects
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/projects?page=1&pageSize=20&status=active&sortBy=createdAt&sortOrder=desc
+  body: none
+}
+
+
+docs {
+  # List organization projects
+
+  Authentication: bearer access token; requires any organization membership.
+  Tenant scope: `organizationId` is validated against the authenticated membership.
+  Expected response: `200` with `items` and `pagination`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `422` for invalid query parameters.
+}

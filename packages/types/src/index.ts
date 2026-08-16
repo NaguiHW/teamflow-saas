@@ -63,6 +63,12 @@ export type WorkspaceResponse = {
   projects: Project[];
   tasks: PaginatedResponse<Task>;
   activity: ActivityEvent[];
+  currentUser?: {
+    id: string;
+    email: string;
+    displayName?: string | null;
+    role?: "owner" | "admin" | "member" | "viewer";
+  };
 };
 
 export * from "./schemas";

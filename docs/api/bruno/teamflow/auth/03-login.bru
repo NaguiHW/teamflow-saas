@@ -1,0 +1,30 @@
+meta {
+  name: Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{apiBaseUrl}}/auth/login
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "{{email}}",
+    "password": "{{password}}"
+  }
+}
+
+docs {
+  # Login
+
+  Authenticates through Supabase Auth.
+  The API sets secure session cookies on success.
+  Expected response: `200` with `authenticated: true`.
+  Error case: `401` with `LOGIN_FAILED`.
+}

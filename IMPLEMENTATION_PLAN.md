@@ -220,7 +220,7 @@ Review the API contract, data model, and business rules before building the full
 
 ## Phase 6 — Next.js dashboard integration
 
-Status: [ ] Not started.
+Status: [~] In progress.
 
 ### Objective
 
@@ -229,23 +229,23 @@ with production-ready accessibility, responsive behavior, theming, and localizat
 
 ### Tasks
 
-- [ ] Consolidate public and authenticated layouts from the Phase 3 shell.
+- [x] Consolidate public and authenticated layouts from the Phase 3 shell.
 - [ ] Harden dashboard navigation, project pages, and task pages for the real API.
-- [ ] Replace the mock transport with the real API without changing component contracts.
-- [ ] Use Server Components by default.
-- [ ] Use Client Components only for interaction and local state.
-- [ ] Implement loading, error, and empty states.
-- [ ] Use Sass, CSS Modules, and responsibility-based components.
-- [ ] Use Lucide React as the default icon library, with Phosphor Icons as a selective complement and React Icons for brand logos.
-- [ ] Use Toastify for visual feedback.
-- [ ] Add light and dark themes using semantic design tokens and CSS variables.
-- [ ] Respect the system color scheme and provide a persisted manual theme toggle.
-- [ ] Add internationalization for English and Spanish using the approved i18n solution.
-- [ ] Keep translations organized by feature and avoid hardcoded user-facing copy.
-- [ ] Add basic accessibility and keyboard navigation.
-- [ ] Define and implement `hover`, `active`, `focus-visible`, and `disabled` states for interactive controls.
-- [ ] Verify touch-friendly feedback without relying exclusively on `hover`.
-- [ ] Add metadata and SEO for public pages.
+- [x] Replace the mock transport with the real API without changing component contracts.
+- [x] Use Server Components by default.
+- [x] Use Client Components only for interaction and local state.
+- [x] Implement loading, error, and empty states.
+- [x] Use Sass, CSS Modules, and responsibility-based components.
+- [x] Use Lucide React as the default icon library, with Phosphor Icons as a selective complement and React Icons for brand logos.
+- [x] Use Toastify for visual feedback.
+- [x] Add light and dark themes using semantic design tokens and CSS variables.
+- [x] Respect the system color scheme and provide a persisted manual theme toggle.
+- [x] Add internationalization for English and Spanish using the approved i18n solution.
+- [x] Keep translations organized by feature and avoid hardcoded user-facing copy.
+- [x] Add basic accessibility and keyboard navigation.
+- [x] Define and implement `hover`, `active`, `focus-visible`, and `disabled` states for interactive controls.
+- [x] Verify touch-friendly feedback without relying exclusively on `hover`.
+- [x] Add metadata and SEO for public pages.
 
 ### Exit criteria
 

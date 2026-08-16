@@ -1,0 +1,19 @@
+meta {
+  name: Detach label from task
+  type: http
+  seq: 20
+}
+
+delete {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/tasks/{{taskId}}/labels/{{labelId}}
+  body: none
+}
+
+
+docs {
+  # Detach label from task
+
+  Authentication: authenticated session cookie; requires `owner`, `admin`, or `member` membership.
+  Expected response: `200` with `{ "detached": true }`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; invalid UUID path parameters return `422`.
+}

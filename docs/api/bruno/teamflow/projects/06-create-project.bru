@@ -1,0 +1,30 @@
+meta {
+  name: Create project
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/projects
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Website redesign",
+    "slug": "website-redesign",
+    "description": "Refresh the marketing site"
+  }
+}
+
+docs {
+  # Create project
+
+  Authentication: authenticated session cookie; requires `owner` or `admin` membership.
+  Expected response: `201` with `project`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `409` `PROJECT_SLUG_CONFLICT`; `422` for invalid input.
+}

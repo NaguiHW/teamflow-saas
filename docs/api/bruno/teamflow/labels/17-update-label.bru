@@ -1,0 +1,29 @@
+meta {
+  name: Update label
+  type: http
+  seq: 17
+}
+
+patch {
+  url: {{apiBaseUrl}}/organizations/{{organizationId}}/labels/{{labelId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Urgent",
+    "color": "#C34F46"
+  }
+}
+
+docs {
+  # Update label
+
+  Authentication: authenticated session cookie; requires `owner` or `admin` membership.
+  Expected response: `200` with `label`.
+  Error cases: `401` `UNAUTHENTICATED`; `403` `FORBIDDEN`; `404` `LABEL_NOT_FOUND`; `409` `LABEL_CONFLICT`; `422` for invalid input.
+}

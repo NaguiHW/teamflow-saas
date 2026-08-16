@@ -16,6 +16,12 @@ export const handlers = [
   http.get("*/mock-api/workspace", () => {
     const response = {
       organization: demoOrganization,
+      currentUser: {
+        id: "user_maya",
+        email: "maya@northstar.example",
+        displayName: "Maya Chen",
+        role: "owner" as const,
+      },
       projects: demoProjects,
       tasks: {
         items: tasks,
